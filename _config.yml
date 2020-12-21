@@ -1,0 +1,4 @@
+sass:
+  sass_dir: _sass
+
+paginate: 5

@@ -1,0 +1,25 @@
+---
+layout: default
+title: Home
+---
+<ol class="post-list">
+    {% for post in site.posts %}
+    <li class="post-list__item">
+        <a href="{{ post.url }}">
+            <img src="/assets/image/default/logo-05-01.png"/>
+            <div>
+                <div class="post-list__item--title">
+                    {{ post.title }}
+                </div>
+                <div class="post-list__item--date">
+                    {{ post.date }}
+                </div>
+                {% assign writer = site.data.writers[post.writer] %}
+                <div class="post-list__item--writer">
+                    {{ writer.name }}
+                </div>
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ol>

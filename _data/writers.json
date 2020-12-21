@@ -1,0 +1,14 @@
+{
+  "default" : {
+    "name": "딜리셔스 직원",
+    "thumbnail": "/assets/image/default/logo-05-01.png",
+    "comment": "딜리셔스 기본 작성자",
+    "career": "딜리셔스 개발자"
+  },
+  "지준호" : {
+    "name": "지준호",
+    "thumbnail": "/assets/image/writers/지준호.png",
+    "comment": "백조 같은 삶 추구 (겉으로 보기에는 우아하지만, 물속에서는 XX 헤엄치고 있음)",
+    "career": "신상마켓 API, Back Office 개발 및 운영"
+  }
+}

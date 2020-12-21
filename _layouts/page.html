@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="post">
+    {{ content }}
+</div>
+{% assign writer = site.data.writers[page.writer]  | default: site.data.writers["default"] %}
+<div class="writer-info">
+    <img src="{{ writer.thumbnail }}">
+    <div class="writer-info__bubble">
+        <p>{{ writer.name }} / {{ writer.career }}</p>
+        <p class="comment">"{{ writer.comment }}"</p>
+    </div>
+</div>
