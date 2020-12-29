@@ -22,7 +22,7 @@ touch Dockerfile
 
 이제 Dockerfile을 작성해 봅시다. 이번 실습에서 작성한 Dockerfile을 예시로 들어 보겠습니다. 저는 ubuntu 18.04를 기본 이미지로 설정했습니다.
 
-```Docker
+```Dockerfile
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -49,7 +49,7 @@ RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
 CMD /root/run_apache.sh
 ```
 
-```Docker
+```Dockerfile
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
