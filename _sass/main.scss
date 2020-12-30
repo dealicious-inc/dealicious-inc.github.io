@@ -22,16 +22,27 @@ body {
   }
 
   h1 {
+    margin-top: 8rem;
     font-size: 32px;
     font-weight: 800;
   }
   p, li {
     >img{
-      display: flex;
-      justify-content: center;
+      margin: auto;
       max-width: 100%;
-      text-align: center;
-      margin: 0 !important;
+      display: flex;
+      &+em {
+        display: flex;
+        justify-content: center;
+        margin: 4px 0;
+        font-size: 0.9em;
+        &:before{
+          content: '[';
+        }
+        &:after{
+          content: ']';
+        }
+      }
     }
     >code {
       color: #00FFFF;
@@ -210,6 +221,7 @@ main {
         height: 100%;
         img {
           background-color: #001339;
+          overflow: hidden;
           width: 100px;
           height: 100px;
           margin-right: 24px;

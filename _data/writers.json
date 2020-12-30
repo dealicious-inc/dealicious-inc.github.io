@@ -34,5 +34,17 @@
     "thumbnail": "/assets/image/writers/이대희.jpg",
     "comment": "고도화 된 기술과 테스트를 원함\n(자동화 돌리고 놀고 싶음)",
     "career": "딜리셔스 QA"
+  },
+  "강전혁" : {
+    "name": "강전혁",
+    "thumbnail": "/assets/image/writers/강전혁.png",
+    "comment": "회사가 좋아서 회사 가까운곳으로 이사옴",
+    "career": "신상마켓 웹 서비스 개발"
+  },
+  "서혜리" : {
+    "name": "서혜리",
+    "thumbnail": "/assets/image/writers/서혜리.jpeg",
+    "comment": "육십까지 개발하고 싶은 주니어 백엔드 개발자입니다.",
+    "career": "신상마켓 API, Back Office 개발 및 운영"
   }
 }
