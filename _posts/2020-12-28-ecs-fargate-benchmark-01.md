@@ -2,6 +2,7 @@
 layout: page
 title: ECS Fagate 성능 측정하기 - 구축부터 Benchmark까지 (상)
 writer: 황문주
+thumbnail: 'posts/2020-12-28-ecs-fargate-benchmark-01.png'
 ---
 
 ## 시작하며
