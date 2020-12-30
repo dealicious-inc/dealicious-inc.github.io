@@ -25,7 +25,14 @@ body {
     font-size: 32px;
     font-weight: 800;
   }
-  p {
+  p, li {
+    >img{
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 !important;
+    }
     >code {
       color: #00FFFF;
       background-color: #000A19;
@@ -58,13 +65,7 @@ body {
 main {
   display: flex;
 }
-img{
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-  text-align: center;
-  margin: 0 !important;
-}
+
 .flex-center-center {
   display: flex;
   justify-content: center;
