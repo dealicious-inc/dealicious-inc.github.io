@@ -10,5 +10,29 @@
     "thumbnail": "/assets/image/writers/지준호.png",
     "comment": "백조 같은 삶 추구 (겉으로 보기에는 우아하지만, 물속에서는 XX 헤엄치고 있음)",
     "career": "신상마켓 API, Back Office 개발 및 운영"
+  },
+  "정수천" : {
+    "name": "정수천",
+    "thumbnail": "/assets/image/writers/정수천.jpg",
+    "comment": "사용자 친화적인 SW개발에 관심이 많은 개발자 입니다.",
+    "career": "딜리셔스 안드로이드 개발"
+  },
+  "조웅" : {
+    "name": "조웅",
+    "thumbnail": "/assets/image/writers/조웅.png",
+    "comment": "귀차니즘은 기술 발달의 원동력",
+    "career": "딜리셔스 데이터 엔지니어"
+  },
+  "황문주" : {
+    "name": "황문주",
+    "thumbnail": "/assets/image/writers/황문주.png",
+    "comment": "딜리셔스의 성공이 저의 성공입니다.",
+    "career": "딜리셔스 DevOps"
+  },
+  "이대희" : {
+    "name": "이대희",
+    "thumbnail": "/assets/image/writers/이대희.jpg",
+    "comment": "고도화 된 기술과 테스트를 원함\n(자동화 돌리고 놀고 싶음)",
+    "career": "딜리셔스 QA"
   }
 }
