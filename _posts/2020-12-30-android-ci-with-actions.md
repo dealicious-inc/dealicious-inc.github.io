@@ -2,6 +2,7 @@
 layout: page
 title: GitHub Actions로 안드로이드 CI환경 구축하기 (Goodbye Jenkins)
 writer: 정수천
+thumbnail: 'posts/2020-12-30-actions-01.png'
 ---
 
 ## Intro

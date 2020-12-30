@@ -2,6 +2,7 @@
 layout: page
 title: AWS fargate 서비스 운영 체험기
 writer: 조웅
+thumbnail: 'posts/2020-12-24-fargate-01.png'
 ---
 
 ## 도입 배경
