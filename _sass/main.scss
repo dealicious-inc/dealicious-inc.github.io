@@ -4,6 +4,30 @@ body {
   margin: 0;
   color: white;
   line-height: 1.6em;
+  code {
+    color: #00FFFF;
+    background-color: #000A19;
+    border-radius: 2px;
+    font-size: 0.8em;
+    margin: 0 2px;
+    padding: 3px 5px;
+  }
+  blockquote{
+    font-style: italic;
+    font-size: 14px;
+    color: #777777;
+    >p {
+      margin: 4px 0;
+    }
+    &::before {
+      content: '❝';
+      font-size: 20px;
+    }
+    &::after {
+      content: '❞';
+      font-size: 20px;
+    }
+  }
 
   h1 {
     font-size: 32px;
@@ -11,7 +35,30 @@ body {
   }
   p {
     >img{
-      width: 100%;
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 !important;
+    }
+  }
+  table {
+    border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+    tr{
+      th{
+        background-color: #000A19;
+        color: white;
+        border: 1px solid #000A19;
+        &+th {
+          border-left: 1px solid white !important;
+        }
+      }
+      td{
+        border: 1px solid #000A19;
+      }
+
     }
   }
 }

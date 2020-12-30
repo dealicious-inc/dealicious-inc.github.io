@@ -6,8 +6,11 @@ title: Home
     {% for post in site.posts %}
     <li class="post-list__item">
         <a href="{{ post.url }}">
-            <img src="/assets/image/default/logo-05-01.png"/>
+            <img src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
             <div>
+                <div class="post-list__item--title">
+                    {{ post.file }}
+                </div>
                 <div class="post-list__item--title">
                     {{ post.title }}
                 </div>
