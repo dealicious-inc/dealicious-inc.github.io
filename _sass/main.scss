@@ -4,14 +4,6 @@ body {
   margin: 0;
   color: white;
   line-height: 1.6em;
-  code {
-    color: #00FFFF;
-    background-color: #000A19;
-    border-radius: 2px;
-    font-size: 0.8em;
-    margin: 0 2px;
-    padding: 3px 5px;
-  }
   blockquote{
     font-style: italic;
     font-size: 14px;
@@ -40,6 +32,14 @@ body {
       max-width: 100%;
       text-align: center;
       margin: 0 !important;
+    }
+    >code {
+      color: #00FFFF;
+      background-color: #000A19;
+      border-radius: 2px;
+      font-size: 0.8em;
+      margin: 0 2px;
+      padding: 3px 5px;
     }
   }
   table {
