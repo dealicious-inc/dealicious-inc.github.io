@@ -18,6 +18,7 @@ thumbnail: 'posts/2020-12-24-fargate-01.png'
 
 이러한 불편함으로 `AWS Fargate 학습` + `Airflow 구조 개선` 2가지를 목표로 하여 진행하게 되었습니다.
   
+  
 ## Fargate 도입 전 고려 사항
 Fargate 사용 하기 위해서는 아래 내용에 대한 이해가 필요합니다.
 
