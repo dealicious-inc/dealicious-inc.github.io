@@ -124,11 +124,11 @@ EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, 
 | 2048(2 vCPU) | 1GB 단위로 4GB ~ 16GB 사이 |
 | 4096(4 vCPU) | 8GB ~ 30GB(1GB 단위) |
 
-Ref : [Task CPU and memory](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/AWS_Fargate.html){: target="_blank"}
+Ref : [Task CPU and memory](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/AWS_Fargate.html){:target="_blank"}
 
 위 표에 나와있듯이 설정할 수 있는 리소스 단위가 정해져 있으며, 설정 가능 최소 Memory = (vCPU 계수 * 2048MB)가 됩니다. 모든 서비스 프로세스가 메모리를 더 많이 사용하는 것이 아니기 때문에 프로세스가 Memory 사용 대비 CPU 사용이 높다면 Fargate는 비용적으로 불리합니다.
 
-비용적으로 봤을 때 'Fargate가 과연 운영할 서비스에 적합한가?'를 판단해 보시길 바랍니다.
+비용적으로 봤을 때 '운영할 서비스에 Fargate가 과연 적합한가?'를 판단해 보시길 바랍니다.
 <br/>
 <br/>
 ## 마치며
