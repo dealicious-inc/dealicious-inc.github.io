@@ -17,7 +17,7 @@ thumbnail: 'posts/2020-12-24-fargate-01.png'
     Airflow는 필수적 기능이 크게 3가지(Web, Scheduler, Work)가 있고 각각 HA 구성이 가능한 구조이나, 이를 Beanstalk으로 운영하려면 각각을 Beanstalk(또는 EC2)으로 나눠야 하므로, 배포 과정의 불편함을 3배로 경험하게 됩니다.
 
 이러한 불편함으로 `AWS Fargate 학습` + `Airflow 구조 개선` 2가지를 목표로 하여 진행하게 되었습니다.
-<br/>
+
 <br/>
 ## Fargate 도입 전 고려 사항
 Fargate 사용 하기 위해서는 아래 내용에 대한 이해가 필요합니다.
