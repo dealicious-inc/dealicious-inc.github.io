@@ -124,8 +124,9 @@ EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, 
 
 Ref : [Task CPU and memory](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/AWS_Fargate.html){:target="_blank"}
 
-Fargate의 비용은 EC2 instance 비용과 비슷하고, EC2 instance와 마찬가지로 Spot과 RI 두가지 옵션이 존재 합니다. 비용절감 효과는 Spot(최대 70%)이 RI(약 30% 수준)보다 더 크지만, 저희가 운영중인 airflow 서비스는 데이터를 핸들링 하기 때문에 Spot bid price 조건에 의해 Running task를 갑자기 강탈(!)당해 데이터 적재가 완료 되지 않는 상황을 피하고자 RI사용을 고려중입니다.
-이처럼 구축하시려는 서비스 특성에 맞게 비용 절감 욥션을 선택 적용하시면 되겠습니다.
+Fargate의 비용은 EC2 instance 비용과 비슷하고, EC2 instance와 마찬가지로 Spot과 RI 두가지 옵션이 존재 합니다.
+비용절감 효과는 Spot(최대 70%)이 RI(약 30% 수준)보다 더 크지만, 저희가 운영중인 airflow 서비스는 데이터를 핸들링 하기 때문에 Spot bid price 조건에 의해 Running task를 갑자기 강탈(!)당해 데이터 적재가 완료 되지 않는 상황을 피하고자 RI사용을 고려중입니다.
+이처럼 구축하시려는 서비스 특성에 맞게 비용 절감 옵션을 선택 적용하시면 되겠습니다.
 <br/>
 <br/>
 ## 마치며
