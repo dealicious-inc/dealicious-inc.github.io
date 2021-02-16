@@ -12,7 +12,7 @@ thumbnail: 'posts/2020-12-24-fargate-01.png'
 
     Beanstalk을 사용해 보셨다면 아시겠지만, '배포 시작 → 배포 완료 → Health Check → 정상 동작 확인'까지 과정이 상당히 느립니다.
 
-1. Failover
+2. Failover
 
     Airflow는 필수적 기능이 크게 3가지(Web, Scheduler, Work)가 있고 각각 HA 구성이 가능한 구조이나, 이를 Beanstalk으로 운영하려면 각각을 Beanstalk(또는 EC2)으로 나눠야 하므로, 배포 과정의 불편함을 3배로 경험하게 됩니다.
 
@@ -31,9 +31,7 @@ Fargate 사용하기 위해서는 아래 내용에 대한 이해가 필요합니
 - Terraform (optional)
 
 저는 모두 Terraform을 통해 생성했는데, 구축하면서 느낀 점은 '약간의 진입 장벽이 있다'는 것이었습니다.
-Terraform은 옵션이지만 나머지 내용에 대해서는 숙지된 상태에서 진행하기를 권합니다.
-
-그리고 비용 측면에서 봤을 때, 리소스(CPU, Memory)를 꼼꼼하게 관리하지 않으면 EC2로 구축한 경우와 비용 면에서 큰 차이가 없습니다. 만약 누군가 Fargate가 비용 측면에서 장점이 있다고 한다면 당장 절교하시기 바랍니다.
+Terraform은 옵션이지만 나머지 내용에 대해서는 숙지된 상태에서 진행하시기를 권합니다.
 <br/>
 <br/>
 ## Fargate란?
@@ -65,7 +63,7 @@ Web UI를 제공하는 Web Server와 flower만 ALB를 통해 접근할 수 있�
 Sidecar Pattern을 사용하게 된 이유는
 
 1. 패치 때마다 DAG 소스 파일을 컨테이너 이미지에 밀어 넣기 위해 Dockerfile을 빌드 하는 과정을 피하고
-1. Airflow의 DAG 소스를 모든 Airflow 컨테이너에 일관되게 반영하기 위해
+2. Airflow의 DAG 소스를 모든 Airflow 컨테이너에 일관되게 반영하기 위해
 
 적용하게 되었습니다. 쉽게 말해 DAG 소스 배포 때 손이 덜 가게 하고 싶었습니다.
 
@@ -112,9 +110,9 @@ Fargate는 ECS 서비스 단위로 Security Group, IAM Role 적용이 가능하�
 예전에 Docker로 서비스를 할 때는 리소스(CPU, Memory) 및 로그 모니터링을 위해 별도의 Agent를 설치해야 한다는 점이 불편했습니다. Fargate는 서비스 단위로 CloudWatch 지표(CPU, Memory)를 제공하고 컨테이너 로그를 CloudWatch 로그를 통해 확인 및 알람 설정이 가능하다는 점도 편리합니다.
 <br/>
 <br/>
-## 비용...그것이 문제로다
+## 비용 절감을 위한 옵션
 
-EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, Fargate도 task definition 생성 시 vCPU와 Memory의 limit를 지정할 수 있고 CPU, Memory 단위로 비용이 책정되어 있습니다(RI도 가능). 여기서 Fargate의 최대 단점이라 할수 있는 비용 문제가 발생합니다. 이유는 아래 표를 보시만 짐작하실 수 있을 겁니다.
+EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, Fargate도 task definition 설정 시 vCPU와 Memory의 limit를 지정할 수 있고 vCPU, Memory 단위로 비용이 책정되어 있습니다. 설정 가능 리소스(vCPU, Memory) 단위는 EC2 intance type별 리소스 단위와 비슷합니다.
 
 | CPU 값 | Memory 값 |
 |---|---|
@@ -126,12 +124,17 @@ EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, 
 
 Ref : [Task CPU and memory](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/AWS_Fargate.html){:target="_blank"}
 
-위 표에 나와있듯이 설정할 수 있는 리소스 단위가 정해져 있으며, 설정 가능 최소 Memory = (vCPU 계수 * 2048MB)가 됩니다. 모든 서비스 프로세스가 메모리를 더 많이 사용하는 것이 아니기 때문에 프로세스가 Memory 사용 대비 CPU 사용이 높다면 Fargate는 비용적으로 불리합니다.
-
-비용적으로 봤을 때 '운영할 서비스에 Fargate가 과연 적합한가?'를 판단해 보시길 바랍니다.
+Fargate의 비용은 EC2 instance 비용과 비슷하고, EC2 instance와 마찬가지로 Spot과 RI 두가지 옵션이 존재 합니다. 비용절감 효과는 Spot(최대 70%)이 RI(약 30% 수준)보다 더 크지만, 저희가 운영중인 airflow 서비스는 데이터를 핸들링 하기 때문에 Spot bid price 조건에 의해 Running task를 갑자기 강탈(!)당해 데이터 적재가 완료 되지 않는 상황을 피하고자 RI사용을 고려중입니다.
+이처럼 구축하시려는 서비스 특성에 맞게 비용 절감 욥션을 선택 적용하시면 되겠습니다.
 <br/>
 <br/>
 ## 마치며
 
-제 개인적인 생각은, Fargate를 EKS의 대안으로 쓴다면 Node Group 관리 포인트와 시간적, 정신적 스트레스가 줄어드는것이 가장 큰 장점이라고 봅니다. 애당초 Managed Service의 특징이 '편리하지만 싸진 않단다'라는 생각이었으므로 비용은 전혀 기대하지 않았기 때문에 장점이 더 와 닿았다고 볼 수 있겠습니다. 비용에 대한 내용에서 언급했듯 리소스 사용량이 Fargate 비용 모델과 부합한다면 EKS의 좋은 대안이 될 수 있을거라 생각합니다.
+Fargate는 EKS(K8s)와 비교하면 몇가지 단점들이 존재합니다.
 
+1. 리소스(CPU, Memory) 상한선 - vCPU 4, Memory 30GB 까지 설정 가능
+2. Stateful workload 미지원
+3. daemonset, privileged pod 미지원(But, 북미 몇몇 리전에는 출시가 되어 조만간 사용 가능할 것으로 예상) 
+
+하지만 'K8s cluster 및 Node 관리 포인트와 시간적, 정신적 스트레스가 줄어든다'는것은 큰 장점이라고 봅니다.
+쿠버네티스는 학습장벽이 낮지 않기 때문에, 앞서 기술한 단점만 상관없다면 EKS의 좋은 대안이라는게 저의 개인적인 생각입니다.
