@@ -131,11 +131,10 @@ Fargate의 비용은 EC2 instance 비용과 비슷하고, EC2 instance와 마찬
 <br/>
 ## 마치며
 
-Fargate는 EKS(K8s)와 비교하면 몇가지 단점들이 존재합니다.
+Fargate는 아래와 같은 단점들이 존재합니다.
 
 1. 리소스(CPU, Memory) 상한선 - vCPU 4, Memory 30GB 까지 설정 가능
 2. Stateful workload 미지원
-3. daemonset, privileged pod 미지원(But, 북미 몇몇 리전에는 출시가 되어 조만간 사용 가능할 것으로 예상) 
 
 하지만 'K8s cluster 및 Node 관리 포인트와 시간적, 정신적 스트레스가 줄어든다'는것은 큰 장점이라고 봅니다.
 쿠버네티스는 학습장벽이 낮지 않기 때문에, 앞서 기술한 단점만 상관없다면 EKS의 좋은 대안이라는게 저의 개인적인 생각입니다.
