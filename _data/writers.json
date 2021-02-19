@@ -46,5 +46,11 @@
     "thumbnail": "/assets/image/writers/서혜리.jpeg",
     "comment": "육십까지 개발하고 싶은 주니어 백엔드 개발자입니다.",
     "career": "신상마켓 API, Back Office 개발 및 운영"
+  },
+  "유현지" : {
+    "name": "유현지",
+    "thumbnail": "/assets/image/writers/유현지.jpeg",
+    "comment": "곧 1인분 거뜬히 소화하는 개발자가 될 겁니다!",
+    "career": "신상마켓 iOS 개발자"
   }
 }
