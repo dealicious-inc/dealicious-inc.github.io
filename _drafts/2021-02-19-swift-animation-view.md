@@ -1,8 +1,8 @@
----	
-layout: page	
-title:  "Swift 금액 입력 애니메이션 뷰 개발 일지"	
-writer: 유현지	
-thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'	
+---    
+layout: page    
+title:  "Swift 금액 입력 애니메이션 뷰 개발 일지"    
+writer: 유현지    
+thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'    
 ---
 
 # 배경
@@ -43,13 +43,14 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 ### 추가 고려사항
 
 평소라면 여기까지 정리하고 넘어갔겠지만, 이 뷰는 라이브러리이기 때문에 다른 앱에서 사용할 수 있도록 범용성을 고려한 작업도 생각해야 했습니다.
-
-:thinking_face: "내가 다른 서비스의 iOS 개발자라면 이 라이브러리의 어느 부분을 커스텀 하고 싶을까?"
+```
+"내가 다른 서비스의 iOS 개발자라면 이 라이브러리의 어느 부분을 커스텀 하고 싶을까?"
+```
 라는 주제로 개발자 MC고요님과 논의 후 추가로 고려해야 할 점들을 정의할 수 있었습니다.
 
 - 금액의 폰트, 컬러 커스텀
 - placeholder의 내용, 폰트, 컬러 커스텀
-- UITextField(예시)처럼 attribute 세팅하는 방식이 깔끔할 것
+- `UITextField`(예시)처럼 attribute 세팅하는 방식이 깔끔할 것
 
  
 
@@ -65,7 +66,7 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 가장 쉽게 떠올릴 수 있는 방법은 숫자와 쉼표(,)가 추가/삭제될 때마다 모든 뷰의 좌표값을 계산하고 위치를 애니메이션으로 조정하는 방식입니다. 하지만 이는 너무 정신건강에 해로운 방법(a.k.a. ~~삽노가다~~)이므로 빠르게 다음 방법을 떠올려야만 했습니다.
 
-그러던 중 최근 UIStackView를 사용해서 데이터의 유무에 따라 레이아웃이 조정되는 UI 작업을 했던 것이 떠올랐고, 바로 UIStackView에 관한 [Apple Developer 문서](https://developer.apple.com/documentation/uikit/uistackview)를 검색했습니다.
+그러던 중 최근 `UIStackView`를 사용해서 데이터의 유무에 따라 레이아웃이 조정되는 UI 작업을 했던 것이 떠올랐고, 바로 `UIStackView`에 관한 [Apple Developer 문서](https://developer.apple.com/documentation/uikit/uistackview)를 검색했습니다.
 
 > Stack views let you leverage the power of Auto Layout, (...) The stack view manages the layout of all the views in its arrangedSubviews property. (...)
 
@@ -73,11 +74,11 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 기본 구현 방식은 다음과 같습니다.
 
-- 뷰에 입력되는 것(숫자, 통화, 쉼표)들은 모두 UILabel의 형태로 UIStackView에 add/remove 시킨다.
-- UIView를 상속하며, 전체를 채울 SubView는 입력된 금액의 유무에 따라 두 개로 나눈다.
-    1. placeholder 역할을 하는 UILabel
-    2. 숫자, 통화(원), 쉼표(,)가 들어갈 UIStackView
-- UIStackView의 arrangedSubviews 배열을 통해 애니메이션이 적용될 UILabel에 접근한다.
+- 뷰에 입력되는 것(숫자, 통화, 쉼표)들은 모두 `UILabel`의 형태로 `UIStackView`에 add/remove 시킨다.
+- `UIView`를 상속하며, 전체를 채울 `SubView`는 입력된 금액의 유무에 따라 두 개로 나눈다.
+    1. placeholder 역할을 하는 `UILabel`
+    2. 숫자, 통화(원), 쉼표(,)가 들어갈 `UIStackView`
+- `UIStackView`의 arrangedSubviews 배열을 통해 애니메이션이 적용될 `UILabel`에 접근한다.
 
 이 정도 기반을 다져놓고, 본격적인 개발을 시작했습니다.
 
@@ -98,40 +99,37 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 ### 초기화
 
-- 이 뷰는 초기화 시 설정된 최대 금액에 따라 UIStackView에 숫자가 들어갈 UILabel 들을 미리 add 시켜두도록 구현되어 있습니다.
-- 뷰에 입력할 수 있는 최대 금액을 변경할 수 없기 때문에 인풋이 들어올 때마다 UILabel을 생성해서 add/delete 시키는 것보다 미리 생성해 두고 show/hidden 시키는 방식이 더 효율적이라고 판단했기 때문입니다.
+- 이 뷰는 초기화 시 설정된 최대 금액에 따라 `UIStackView`에 숫자가 들어갈 `UILabel`들을 미리 add 시켜두도록 구현되어 있습니다.
+- 뷰에 입력할 수 있는 최대 금액을 변경할 수 없기 때문에 인풋이 들어올 때마다 `UILabel`을 생성해서 add/delete 시키는 것보다 미리 생성해 두고 show/hidden 시키는 방식이 더 효율적이라고 판단했기 때문입니다.
 
-    ```swift
-    private func initNumberViews() {
-    		.
-    		.
-    		.
-
-    		var maxPrice = self.maximumPrice
-        while(maxPrice > 0) {
-            self.numberLabelCount += 1
-            maxPrice /= 10
-        }
-        self.currencyView = CurrencyView(text: self.currency, font: self.font, fontColor: self.fontColor)
-            
-    		for _ in 1...self.numberLabelCount {
-    		    let numberLabel = UILabel()
-            numberLabel.isHidden = true
-            numberLabel.alpha = 0.0
-            numberLabel.textAlignment = .center
-                
-            numberLabel.font = self.font
-            numberLabel.font.withSize(self.fontSize)
-            numberLabel.textColor = self.fontColor
-            numberLabel.text = "0"
-                
-            numberLabel.widthAnchor.constraint(equalToConstant: numberLabel.intrinsicContentSize.width + 1.0).isActive = true
-            self.numberStackView.addArrangedSubview(numberLabel)
-        }
-            
-    		self.numberStackView.addArrangedSubview(self.currencyView)
+```swift
+private func initNumberViews() {
+    // ...전략...
+    var maxPrice = self.maximumPrice
+    while(maxPrice > 0) {
+        self.numberLabelCount += 1
+        maxPrice /= 10
     }
-    ```
+    self.currencyView = CurrencyView(text: self.currency, font: self.font, fontColor: self.fontColor)
+        
+    for _ in 1...self.numberLabelCount {
+        let numberLabel = UILabel()
+        numberLabel.isHidden = true
+        numberLabel.alpha = 0.0
+        numberLabel.textAlignment = .center
+            
+        numberLabel.font = self.font
+        numberLabel.font.withSize(self.fontSize)
+        numberLabel.textColor = self.fontColor
+        numberLabel.text = "0"
+            
+        numberLabel.widthAnchor.constraint(equalToConstant: numberLabel.intrinsicContentSize.width + 1.0).isActive = true
+        self.numberStackView.addArrangedSubview(numberLabel)
+    }
+        
+    self.numberStackView.addArrangedSubview(self.currencyView)
+}
+```
 
 ### 숫자 레이블의 하강 애니메이션 처리
 
@@ -143,15 +141,13 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 - **조건 충족 방법**
     1. 초기화 당시 스택 뷰에 미리 hidden 된 레이블들을 넣어놨기 때문에, 알파 값이 0.0일 때 미리 hidden을 풀어주면 스택 뷰가 알아서 레이블이 들어갈 공간을 만들어줍니다.
-    2. 레이블이 hidden → show가 되면 알파 값을 UIView.animate() 함수를 사용해 서서히 0.0 → 1.0이 되게 합니다.
-
- 
+    2. 레이블이 hidden → show가 되면 알파 값을 `UIView.animate()` 함수를 사용해 서서히 0.0 → 1.0이 되게 합니다.
 
 - **애니메이션 처리 순서**
     1. 레이블의 transform.y 값을 -40으로 세팅
-    2. UIView.animate() 시작
+    2. `UIView.animate()` 시작
         - 레이블의 hidden → show (알파 값은 0.0이기 때문에 보이진 않는 상태)
-    3. 2번 animation complete 후 핸들러에서 UIView.animate() 시작
+    3. 2번 animation complete 후 핸들러에서 `UIView.animate()` 시작
         - 레이블의 transform.y 값을 0으로 이동
         - 레이블의 알파 값 0.0 → 1.0 처리
 
@@ -159,8 +155,7 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 ```swift
 private func insertNumberAnimation(_ num: Int) {
-        
-		var digitNum = 0
+    var digitNum = 0
     var currentPrice = self.price
     while(currentPrice > 0) {
         digitNum += 1
@@ -176,26 +171,16 @@ private func insertNumberAnimation(_ num: Int) {
     numberView.transform = CGAffineTransform(translationX: 0, y: -40)
         
     UIView.animate(withDuration: self.insertAnimationDuration, delay: 0.0, options: .curveLinear, animations: { [weak self] in
-            
         guard let s = self else { return }
-            
         s.currencyView.isHidden = false
-            
         numberView.isHidden = false
-            
         s.addFloatingPoint()
-            
     }, completion: { [weak self] _ in
-            
         guard let s = self else { return }
-            
         UIView.animate(withDuration: s.insertAnimationDuration, delay: 0.0, options: .curveLinear, animations:{ [weak self] in
-                
             guard let s = self else { return }
-                
             numberView.transform = CGAffineTransform(translationX: 0, y: 0)
             numberView.alpha = 1.0
-                
             s.currencyView.alpha = 1.0
         })
     })
@@ -212,7 +197,7 @@ private func insertNumberAnimation(_ num: Int) {
     3. 레이블의 transform.x 값의 변화가 없는 것처럼 위로 상승만 해야 합니다.
 
 - **조건 충족 방법**
-    - UIView.animate()에서 숫자 레이블의 transform&알파 값 변환, hidden 처리를 동시에 진행
+    - `UIView.animate()`에서 숫자 레이블의 transform과 알파 값 변환, hidden 처리를 동시에 진행
 
 - **트러블 슈팅**
 
@@ -226,15 +211,15 @@ numberView.transform = CGAffineTransform(translationX: 0, y: -20)
 
 레이블이 hidden 되면서 스택 뷰에 들어 있는 서브 뷰들의 레이아웃이 조정되는 게 숫자 레이블의 transform 값 변화와 맞물려 일어나는 현상이라고 추측되었습니다.
 
-따라서 transform 값 변환 시 X값에 숫자 레이블의 -(frame.width / 2) 값을 주어 위쪽으로만 상승하는 것처럼 보이도록 처리했습니다.
+따라서 transform 값 변환 시 X값에 숫자 레이블의 `-(frame.width / 2)` 값을 주어 위쪽으로만 상승하는 것처럼 보이도록 처리했습니다.
 
 ```swift
 numberView.transform = (digitNum != 0) ? CGAffineTransform(translationX: -(numberView.frame.width/2), y: -20) : CGAffineTransform(translationX: -(numberView.frame.width), y: -20)
 ```
 
 - **애니메이션 처리 순서**
-    1. UIView.animate() 시작
-        - 레이블의 transform x,y 값 변화
+    1. `UIView.animate()` 시작
+        - 레이블의 transform.x, transform.y 값 변화
         - show → hidden 처리
         - 알파 값 1.0 → 0.0 처리
     2. 숫자 입력 시 처리를 위해 transform 값 0,0 으로 세팅
@@ -243,8 +228,7 @@ numberView.transform = (digitNum != 0) ? CGAffineTransform(translationX: -(numbe
 
 ```swift
 private func deleteNumberAnimation() {
-                
-		var digitNum = 0
+    var digitNum = 0
     var currentPrice = self.price
     while(currentPrice > 0) {
         digitNum += 1
@@ -254,13 +238,9 @@ private func deleteNumberAnimation() {
     guard let numberView = self.numberStackView.arrangedSubviews[digitNum] as? UILabel else { return }
         
     UIView.animate(withDuration: self.deleteAnimationDuration, delay: 0.0, options: .curveLinear, animations: { [weak self] in
-            
         guard let s = self else { return }
-            
         numberView.transform = (digitNum != 0) ? CGAffineTransform(translationX: -(numberView.frame.width/2), y: -20) : CGAffineTransform(translationX: -(numberView.frame.width), y: -20)
-            
         numberView.alpha = 0.0
-            
         numberView.isHidden = true
             
         if digitNum == 0 {
@@ -269,9 +249,8 @@ private func deleteNumberAnimation() {
         }
 
         s.addFloatingPoint()
-            
+
     }, completion: { _ in
-            
         numberView.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
     })
 }
@@ -299,32 +278,32 @@ private func deleteNumberAnimation() {
     3. 상승/하강 애니메이션 처리
     4. 현재 금액을 기준으로 세 자릿수마다 쉼표(,) 레이블 생성 후 insert
 
-        ```swift
-        private func addFloatingPoint() {
-                
-        		if self.price < 1000 { return }
-                
-            var digitNum = 0
-            var currentPrice = self.price
-            while(currentPrice > 0) {
-                digitNum += 1
-                currentPrice /= 10
-            }
-                
-            let floatingPointCount = (digitNum - 1) / 3
-            for idx in 1...floatingPointCount {
-                    
-                let floatingPointIdx = (digitNum) - (idx*3)
-                    
-                let floatingPointView = UILabel()
-                floatingPointView.text = self.floatingPoint
-                floatingPointView.font = self.font
-                floatingPointView.textColor = (self.isOverMaximum == true) ? self.maximumPricefontColor : self.fontColor
-                    
-                self.numberStackView.insertArrangedSubview(floatingPointView, at: floatingPointIdx)
-            }
-        }
-        ```
+```swift
+private func addFloatingPoint() {
+        
+    if self.price < 1000 { return }
+        
+    var digitNum = 0
+    var currentPrice = self.price
+    while(currentPrice > 0) {
+        digitNum += 1
+        currentPrice /= 10
+    }
+        
+    let floatingPointCount = (digitNum - 1) / 3
+    for idx in 1...floatingPointCount {
+            
+        let floatingPointIdx = (digitNum) - (idx*3)
+            
+        let floatingPointView = UILabel()
+        floatingPointView.text = self.floatingPoint
+        floatingPointView.font = self.font
+        floatingPointView.textColor = (self.isOverMaximum == true) ? self.maximumPricefontColor : self.fontColor
+            
+        self.numberStackView.insertArrangedSubview(floatingPointView, at: floatingPointIdx)
+    }
+}
+```
 
 이 밖에도 깨알 같은 코드들이 들어가 있지만, 주요 구현은 여기까지 마치겠습니다.
 
