@@ -280,7 +280,6 @@ private func deleteNumberAnimation() {
 
 ```swift
 private func addFloatingPoint() {
-        
     if self.price < 1000 { return }
         
     var digitNum = 0
@@ -292,9 +291,7 @@ private func addFloatingPoint() {
         
     let floatingPointCount = (digitNum - 1) / 3
     for idx in 1...floatingPointCount {
-            
         let floatingPointIdx = (digitNum) - (idx*3)
-            
         let floatingPointView = UILabel()
         floatingPointView.text = self.floatingPoint
         floatingPointView.font = self.font
