@@ -2,16 +2,15 @@
 layout: page    
 title:  "Private npm registry 도입기"    
 writer: 이다빈    
-thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'    
+thumbnail: '/posts/20210308dabin/2021-03-08-09.png'    
 ---
 
 # lerna + vue + typescirpt 공통 모듈 패키지 배포하기
 # 도입배경
 
-딜리셔스 웹파트에서 관리하는 여러 프로젝트는 대부분 Vue.js를 도입하여 컴포넌트 기반으로 구성되어 있습니다. 
+딜리셔스 웹파트에서 관리하는 여러 프로젝트는 대부분 Vue.js를 도입하여 컴포넌트 기반으로 구성되어 있습니다.
 
 각각의 프로젝트 안에는 비즈니스 로직이 포함된 개별 컴포넌트도 존재하지만 기본적인 컴포넌트는 동일한 경우가 많습니다. 
-
 예를 들어 신상마켓 소매 사용자 웹사이트와 도매 판매자 웹사이트의 로그인 화면을 살펴봅시다.
 
 ![신상마켓 소매사용자 웹](/assets/image/posts/20210308dabin/2021-03-08-01.png)
@@ -20,7 +19,6 @@ thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'
 
 신상마켓 소매 사용자 웹사이트와 도매 판매자 웹사이트는 별도의 프로젝트로 진행되었고 각각 하나의 Github Repository 를 가지고 있지만
 UI, 기능이 같은 다수의 공통 컴포넌트가 존재합니다. 위 화면에서는 TextInput, Button, Check Box 가 그에 해당합니다.
-
 문제는 별도 Github Repository 마다 공통 컴포넌트가 존재하면 신규 프로젝트가 진행될 때 마다 중복 코드가 늘어난다는 점이었습니다.
 
 그래서 공통 컴포넌트들을 한곳에서 관리하고 배포할 수 있도록 사설 저장소와 Mono-Repo 를 도입하게 되었습니다.
@@ -31,10 +29,8 @@ UI, 기능이 같은 다수의 공통 컴포넌트가 존재합니다. 위 화�
 회사에서 개발하는 서비스라면 사내 개발팀만 접근할 수 있어야 합니다.
 
 즉, Private 한 접근 권한을 가진 저장소가 필요했는데요.
-
 웹 파트에서는 이미 프로젝트 저장소로 Github 를 사용하고 있었고
 비용적인 측면과 관리 포인트 최소화의 이유로 Github 에서 제공하는 GitHub Packages 를 사용하기로 하였습니다.
-
 다른 옵션으로는 NPM pro 계정을 사용하거나 Verdaccio 를 사용하여 직접 사설 저장소를 운영할 수 있습니다.
 
 GitHub Packages 는 NPM 뿐만 아니라 Docker, RubyGems, Maven, NuGet 등 
@@ -49,9 +45,7 @@ GitHub Packages 는 NPM 뿐만 아니라 Docker, RubyGems, Maven, NuGet 등
 먼저, 사설 Github Packages 를 사용하기 위한 액세스 토큰이 필요합니다. 
 
 액세스 토큰은 패키지를 배포(`$npm publish`) 하거나 다운로드(`$npm install`) 할 때 사용합니다.
-
 Github 에 로그인 한 뒤 Settings -> Developer settings -> Personal access tokens -> Generate new token 메뉴에 들어갑니다.
-
 Note 란에 토큰 사용처나 발급목적을 적어두어 다른 토큰과 혼동되지 않게 해줍니다.
 
 ![Access_token_setting](/assets/image/posts/20210308dabin/2021-03-08-03.png)
@@ -95,7 +89,6 @@ package.json
 ```
 
 npm 배포를 위해 설정한 package.json 파일 내용 예시입니다.
-
 (배포에 필요하지 않은 부분은 생략했습니다.)
 
 ```json
@@ -130,14 +123,11 @@ repository.type은 "git"으로 하고 repository.url 에 Github 저장소 주소
 
 npm 저장소의 기본 주소가 [https://registry.npmjs.org](https://registry.npmjs.org/) 로 설정되어 있기 때문에
 별도의 주소 설정을 하지 않으면 www.npmjs.com으로 패키지가 배포되게 됩니다.
-
 publishConfig·registry에 GithubPackages npm 주소인 "https://npm.pkg.github.com"을 써줍니다. 
 
 3. **.npmrc 설정**
 
-프로젝트 단위로 .npmrc 설정을 하는 경우,
-
-프로젝트 root 디렉터리에. npmrc 파일을 생성합니다.
+프로젝트 단위로 .npmrc 설정을 하는 경우, 프로젝트 root 디렉터리에. npmrc 파일을 생성합니다.
 
 .npmrc
 
@@ -146,9 +136,7 @@ publishConfig·registry에 GithubPackages npm 주소인 "https://npm.pkg.github.
 @deali-web:registry=https://npm.pkg.github.com/
 ```
 
-로컬 npm 설정을 하는 경우,
-
-~/.npmrc 파일 내용을 위와 같게 수정해 줍니다.
+로컬 npm 설정을 하는 경우, ~/.npmrc 파일 내용을 위와 같게 수정해 줍니다.
 
 4. **패키지 배포**
 
@@ -164,7 +152,6 @@ $ npm publish
 ```
 
 명령어를 실행하면 배포가 시작됩니다.
-
 배포에 성공하면 해당 프로젝트 주소의 Packages 메뉴에서 배포된 패키지를 확인할 수 있습니다.
 
 ![Repository_Packages](/assets/image/posts/20210308dabin/2021-03-08-04.png)
@@ -197,7 +184,6 @@ $ npm publish
 - 여러 패키지가 무분별하게 서로 의존성을 가지가 될 수 있음
 
 위 장단점을 토대로 Mono-Repo 는 공통 관심사를 가진 패키지들끼리 묶어서 사용할 때 가장 효율적이라는 것을 알 수 있습니다.
-
 웹파트에서는 Mono-repo 를 구성하고 관리할 수 있는 도구로 Lerna 를 사용했습니다.
 
 # Lerna
@@ -213,7 +199,7 @@ Lerna 는 배포 및 패키지 관리를 편하게 할 수 있는 CLI 를 제공
 웹파트에서는 공통 컴포넌트 모듈(Components)과 공통 함수 모듈(Composible)로 관심사를 구분하여 패키지를 구성하였습니다.
 
 
-## 1. Mono-Repo 프로젝트 생성하기
+## Mono-Repo 프로젝트 생성하기
 
 먼저 프로젝트 디렉터리를 생성한 뒤 npx 를 통해 `lerna` 명령어를 입력합니다.
 
@@ -222,7 +208,6 @@ $ npx lerna init --independent
 ```
 
 이 때 independent 모드로 설정하면 패키지마다 별도의 버전으로 배포할 수 있습니다.
-
 이렇게 Lerna 프로젝트를 초기화하면
 
 ```bash
@@ -242,7 +227,7 @@ pacakge.json   → 루트의 package.json 파일에 Mono-Repo 에서 공통으�
 
 pacakges 경로를 임의의 폴더로 변경하고 싶다면 lerna.json 파일 에서 packages 옵션에 경로를 수정하면 됩니다.
 
-## 2. Vue 공통 컴포넌트 모듈 패키지 생성
+## Vue 공통 컴포넌트 모듈 패키지 생성
 
 ```bash
 $ lerna create components
@@ -287,7 +272,6 @@ Vue 라이브러리 설정을 위해 packages/components/package.json 파일을 
 ```
 
 사설 Github 저장소 배포 설정과 vue cli service 빌드 설정이 완료되었습니다.
-
 그런 다음 packages/components/vue.config.js 파일을 수정합니다.
 
 ```jsx
@@ -317,7 +301,7 @@ module.exports = {
 
 `css.extract : false` 로 설정하면 라이브러리를 빌드했을 때 별도의 css 파일이 생기지 않고 컴포넌트에 스타일이 포함됩니다.
 
-## 3. 공통 함수 모듈 패키지 생성
+## 공통 함수 모듈 패키지 생성
 
 ```jsx
 $ lerna create composible
@@ -328,7 +312,6 @@ composible 이라는 이름으로 packages 디렉터리 아래 생성됩니다.
 ![Composible_Directory_Architecture](/assets/image/posts/20210308dabin/2021-03-08-07.png)
 
 composible 디렉토리의 공통함수 모듈은 타입스크립트로 작성하였기 때문에 tsc 빌드 과정이 필요합니다.
-
 먼저 packages/composible/package.json 파일을 수정합니다.
 
 ```json
@@ -361,13 +344,11 @@ composible 디렉토리의 공통함수 모듈은 타입스크립트로 작성�
 ```
 
 Lerna 루트에 기본 tsconfig.json 파일을 생성하였기 때문에 `extends`로 기본 설정을 확장해서 사용합니다.
-
 이렇게 하면 프로젝트마다 개별적으로 필요한 설정만 추가해주면 됩니다.
 
-## 4. 패키지 배포 준비
+## 패키지 배포 준비
 
 이제 패키지 설정이 끝났습니다.
-
 Lerna 프로젝트의 배포 준비는 아래와 같은 순서로 이루어집니다.
 
 ```bash
@@ -382,10 +363,9 @@ $ lerna run build
 ```
 
 `lerna run [script]` 명령어는 packages/ 하위 패키지 각각의 `npm script` 명령어를 실행합니다.
-
 여기서 위에 만들어둔 components 패키지와 composible 패키지의 빌드 명령어가 실행됩니다.
 
-## 5. 패키지 배포
+## 패키지 배포
 
 Lerna 는 Git 기반으로 패키지의 변경사항을 체크합니다.
 패키지를 배포하기 위해서 먼저 `git commit` 으로 변경사항을 저장해야 합니다.
@@ -407,7 +387,7 @@ CUI 에서 배포할 버전을 선택하면 배포가 시작됩니다.
 
 배포가 잘 되었다면 Github Packages 에서 확인할 수 있습니다.
 
-## 6. 패키지 사용하기
+## 패키지 사용하기
 
 우리가 만든 저장소는 사설 저장소이기 때문에 패키지를 사용하는 쪽에서도 .npmrc 설정이 필요합니다.
 
