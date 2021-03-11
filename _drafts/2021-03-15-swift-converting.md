@@ -1,3 +1,11 @@
+---
+layout: page
+title: iOS 컨버팅의 추억
+writer: 박경우
+thumbnail: 'posts/2021-03-15-swift-converting-02.png'
+---
+
+
 2018년 2월 1일 딜리셔스에 iOS 개발자로 이직 후 첫 출근을 하였습니다.
 
 맥북을 세팅하고 신상마켓 Xcode 프로젝트를 처음 열고 약 10분 뒤 가슴속에서 샤우팅과 함께 멘붕이 왔습니다.
