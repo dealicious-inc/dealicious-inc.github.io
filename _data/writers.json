@@ -58,5 +58,11 @@
     "thumbnail": "/assets/image/writers/이다빈.jpg",
     "comment": "하늘을 우러러 한점 부끄럼 없는 코드를 쓰자",
     "career": "딜리셔스 프론트엔드 개발자"
-  }
+  },
+  "박경우" : {
+    "name": "박경우",
+    "thumbnail": "/assets/image/writers/박경우.png",
+    "comment": "맛있는 코드를 요리하다",
+    "career": "신상마켓 iOS 개발자"
+  },
 }
