@@ -2,7 +2,7 @@
 layout: page
 title: iOS 컨버팅의 추억
 writer: 박경우
-thumbnail: 'posts/2021-03-15-swift-converting-02.png'
+thumbnail: 'posts/20210315park/2021-03-15-swift-converting-02.png'
 ---
 <br/>
 
