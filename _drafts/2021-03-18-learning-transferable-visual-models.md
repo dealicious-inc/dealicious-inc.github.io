@@ -72,23 +72,21 @@ CLIP은 *Contrastive Language–Image Pre-training* 의 약자입니다. 아마 
 
 그 다음은 위와 같이 각 이미지와 텍스트 벡터간의 내적을 통해 코사인 유사도를 구합니다. 이전 단계에서 L2-normalization을 수행했기 때문에 단순 내적을 통해 코사인 유사도 값을 구할 수 있습니다.
 
-그러나 여기까지는 모델을 학습시키기 위한 계산과정일 뿐입니다. 학습을 시키려면 정답이 필요합니다. 우리가 여기서 사용할 수 있는 정답은 과연 무엇일까요? 현재 알려진 정보는 첫번째 이미지벡터를 설명하는 텍스트의 정보는 첫번째 텍스트 벡터에만 있습니다. 다시 말해, 자기자신을 제외한 나머지 텍스트 혹은 이미지는 서로 다르다는 관계를 가지고 있습니다. 따라서, i번째 이미지와 유사한 텍스트는 오로지 i번째 텍스트 밖에 없습니다. 이는 각 유사도 점수는 1부터 N까지의 숫자들중 하나의 Label을 가진 것으로 해석할 수 있으며, 이를 통해 Cross Entropy loss를 계산할 수 있습니다. 논문에서는 이미지 관점에서의 cross entropy loss와 텍스트 관점에서의 loss값을 계산합니다. 여기서는 하나의 이미지에 대해서 어떻게 loss를 계산하는지 예시를 들어보겠습니다.
+그러나 여기까지는 모델을 학습시키기 위한 계산과정일 뿐입니다. 학습을 시키려면 정답이 필요합니다. 우리가 여기서 사용할 수 있는 정답은 과연 무엇일까요? 현재 알려진 정보는 첫번째 이미지 벡터를 설명하는 텍스트의 정보는 첫번째 텍스트 벡터에만 있습니다. 다시 말해, 자기 자신을 제외한 나머지 텍스트 혹은 이미지는 서로 다르다는 관계를 가지고 있습니다. 따라서, i번째 이미지와 유사한 텍스트는 오로지 i번째 텍스트 밖에 없습니다. 이는 각 유사도 점수는 1부터 N까지의 숫자들중 하나의 Label을 가진 것으로 해석할 수 있으며, 이를 통해 Cross Entropy loss를 계산할 수 있습니다. 논문에서는 이미지 관점에서의 cross entropy loss와 텍스트 관점에서의 loss값을 계산합니다. 여기서는 하나의 이미지에 대해서 어떻게 loss를 계산하는지 예시를 들어보겠습니다.
 
 ![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/7.png)
 
 위 그림에서 초록색 화살표 방향으로 loss를 계산하면 이미지 하나하나에 대해서 loss를 계산합니다. 반대로 주황색 화살표 방향으로 loss를 계산하면 텍스트 하나하나에 대해서 loss를 계산합니다. i 번째 이미지의 loss는 다음과 같이 계산합니다.
 
-$$\text{(i번째 이미지의 loss)} = \Sigma_{k=1}^{C} I(k = i) \cdot (-log \frac{exp(I_{i} \cdot T_{k})}{\Sigma_{p=1}^{N} exp(I_{i} \cdot T_{p})} ) \\ = -log \frac{exp(I_{i} \cdot T_{i})}{\Sigma_{p=1}^{N} exp(I_{i} \cdot T_{p})}$$
-
-$$I(k=i) =  \begin{cases}    1       & \quad \text{if } k = i \\    0       & \quad \text{otherwise}  \end{cases}, k = 1, ..., N, i = 1, ..., N, \\ \text{ k : class, i : 이미지 인덱스}$$
+![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/15.png)
 
 예를 들어, 세번째 이미지의 loss값은 다음과 같습니다.
 
-$$\text{(3번째 이미지의 loss)} = \Sigma_{k=1}^{C} I(k = 3) \cdot (-log \frac{exp(I_{3} \cdot T_{k})}{\Sigma_{p=1}^{N} exp(I_{3} \cdot T_{p})} ) \\ = -log \frac{exp(I_{3} \cdot T_{3})}{\Sigma_{p=1}^{N} exp(I_{3} \cdot T_{p})}$$
+![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/16.png)
 
-위와 같은 계산방식으로 첫번째부터 N번째 이미지까지 적용합니다. 이미지 뿐만아니라 텍스트 관점에 대해서도 계산을 진행합니다. 그러면 각각의 loss값들은 N개의 요소를 가지는 벡터가 됩니다. 2개의 벡터를 더한 후 2로 나누어줍니다. 이렇게 해서 구한 loss를 기반으로 모델을 학습시킵니다.
+위와 같은 계산 방식으로 첫번째부터 N번째 이미지까지 적용합니다. 이미지 뿐만아니라 텍스트 관점에 대해서도 계산을 진행합니다. 그러면 각각의 loss값들은 N개의 요소를 가지는 벡터가 됩니다. 2개의 벡터를 더한 후 2로 나누어줍니다. 이렇게 해서 구한 loss를 기반으로 모델을 학습시킵니다.
 
-여기까지가 Contrastive pre-training 단계입니다. 정리하자면, 이미지와 텍스트를 컴퓨터가 인식할 수 있게끔 벡터로 변환 후 이미지벡터와 텍스트벡터간의 유사도를 계산하여 이 유사도가 커지는 방향으로 학습을 한다고 보시면 됩니다. pre-training이라고 하는 이유는 광범위한 대용량 데이터셋에 대해 “미리” 학습을 시키고, 다른 하위 문제에 적용하겠다는 차원에서 해당 단어가 쓰였다고 보시면 되겠습니다. 이렇게 미리 학습을 수행한 모델은 특정 분야의 데이터셋에 학습한 모델에 비해 일반화를 잘하기 때문입니다. 이런 모델을 특정 하위 문제에 사용하기 위해서는 보통 “Fine-Tuning”이라는 과정을 거칩니다. 이는 특정 문제에서 사용되는 데이터셋에 한번 더 학습시킨다는 뜻입니다. 그런데 해당 논문에서는 “Fine-Tuning” 과정을 거치지 않습니다. 모델 학습은 해당 단계에서 끝납니다.
+여기까지가 Contrastive pre-training 단계입니다. 정리하자면, 이미지와 텍스트를 컴퓨터가 인식할 수 있게끔 벡터로 변환 후 이미지 벡터와 텍스트 벡터간의 유사도를 계산하여 이 유사도가 커지는 방향으로 학습을 한다고 보시면 됩니다. pre-training이라고 하는 이유는 광범위한 대용량 데이터셋에 대해 “미리” 학습을 시키고, 다른 하위 문제에 적용하겠다는 차원에서 해당 단어가 쓰였다고 보시면 되겠습니다. 이렇게 미리 학습을 수행한 모델은 특정 분야의 데이터셋에 학습한 모델에 비해 일반화를 잘하기 때문입니다. 이런 모델을 특정 하위 문제에 사용하기 위해서는 보통 “Fine-Tuning”이라는 과정을 거칩니다. 이는 특정 문제에서 사용되는 데이터셋에 한번 더 학습시킨다는 뜻입니다. 그런데 해당 논문에서는 “Fine-Tuning” 과정을 거치지 않습니다. 모델 학습은 해당 단계에서 끝납니다.
 
 ### **2. Create dataset classifier from label text**
 
@@ -96,13 +94,13 @@ Fine-Tuning 과정을 거치지 않고 Zero-Shot Prediction을 통해 모델의 
 
 ![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/8.png)
 
-먼저 적용하고자하는 특정 하위 문제의 데이터셋의 Label을 텍스트로 변환합니다. 예를 들어, 개(Dog)와 고양이(Cat)를 분류하는 문제를 풀고싶다면, “a photo of a Dog”, “a photo of a Cat” 이라는 텍스트를 만듭니다. 이후 Text Encoder에 통과시켜 텍스트 벡터값을 구합니다.
+먼저 적용하고자 하는 특정 하위 문제의 데이터셋의 Label을 텍스트로 변환합니다. 예를 들어, 개(Dog)와 고양이(Cat)를 분류하는 문제를 풀고싶다면, “a photo of a Dog”, “a photo of a Cat” 이라는 텍스트를 만듭니다. 이후 Text Encoder에 통과시켜 텍스트 벡터값을 구합니다.
 
 ### **3. Use for zero-shot prediction**
 
 ![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/9.png)
 
-이전 단계에서 나온 텍스트 벡터들과 예측하고싶은 이미지의 벡터간의 유사도를 계산하여 상대적으로 높은 값을 갖는 텍스트를 선택합니다. 이미지 벡터는 pre-training 시 학습된 Image Encoder를 사용하여 계산합니다.
+이전 단계에서 나온 텍스트 벡터들과 예측하고 싶은 이미지의 벡터간의 유사도를 계산하여 상대적으로 높은 값을 갖는 텍스트를 선택합니다. 이미지 벡터는 pre-training 시 학습된 Image Encoder를 사용하여 계산합니다.
 
 ## 실험결과
 
@@ -110,13 +108,13 @@ OpenAI에서는 Vision의 다양한 분야에 적용하여 실험을 진행했�
 
 ### **분류 문제의 여러 데이터셋**
 
-CLIP이 정말 성능이 좋은 모델인지 확인하기 위한 과정으로 분류 문제의 여러 데이터셋에 성능을 비교했습니다. 특히, Zero-Shot prediction이 좋은 방식인지 확인해보기 위해 27개의 데이터셋에 ImageNet에 pre-trained ResNet50 모델을 Fine-Tuning 하여 비교했습니다. Fine-Tuning을 하는 방법도 다양한데 여기서는 Output을 출력하는 Top layer 부분을 데이터셋별로 다르게 학습했습니다. Top layer 이전 모델의 parameters는 고정시킵니다. 논문에서는 이러한 모델을 Linear Probe라고 합니다.
+CLIP이 정말 성능이 좋은 모델인지 확인하기 위한 과정으로 분류 문제의 여러 데이터셋에 성능을 비교했습니다. 특히, Zero-Shot Prediction이 좋은 방식인지 확인해보기 위해 27개의 데이터셋에 ImageNet에 pre-trained ResNet50 모델을 Fine-Tuning 하여 비교했습니다. Fine-Tuning을 하는 방법도 다양한데 여기서는 Output을 출력하는 Top Layer 부분을 데이터셋별로 다르게 학습했습니다. Top Layer 이전 모델의 parameters는 고정시킵니다. 논문에서는 이러한 모델을 Linear Probe라고 합니다.
 
 ![](/assets/image/posts/2021-03-22-learning-transferable-visual-models/10.png)
 
 [https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
-27개중 16개의 데이터셋에서 CLIP의 zero-shot prediction이 linear probe 보다 성능이 비교적 좋은 것을 확인할 수 있습니다. 그런데 의외로 MNIST 데이터셋에 대해서는 안좋은 성능을 보였습니다. 이건 좀 충격이긴했는데 논문에서는 pre-training 데이터셋에 MNIST와 유사한 데이터가 거의 없어서 성능이 좋지 않았다고 이야기합니다. 그외 성능이 비교적 좋지 않은 데이터셋들은 상당히 세분화된 분류 문제의 데이터셋(암 진단 혹은 꽃의 종류 구분 등)으로 Zero-Shot 예측은 이런 문제에 약하다는 것을 보여줍니다.
+27개중 16개의 데이터셋에서 CLIP의 Zero-Shot Prediction이 Linear Probe 보다 성능이 비교적 좋은 것을 확인할 수 있습니다. 그런데 의외로 MNIST 데이터셋에 대해서는 안좋은 성능을 보였습니다. 이건 좀 충격이긴했는데 논문에서는 pre-training 데이터셋에 MNIST와 유사한 데이터가 거의 없어서 성능이 좋지 않았다고 이야기합니다. 그외 성능이 비교적 좋지 않은 데이터셋들은 상당히 세분화된 분류 문제의 데이터셋(암 진단 혹은 꽃의 종류 구분 등)으로 Zero-Shot 예측은 이런 문제에 약하다는 것을 보여줍니다.
 
 ### **Zero-Shot vs Few-shot linear probes**
 
@@ -124,7 +122,7 @@ CLIP이 정말 성능이 좋은 모델인지 확인하기 위한 과정으로 �
 
 [https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
-Few-Shot linear probes과 성능 비교도 진행했습니다. Few-Shot 의 의미는 각 클래스당 적은 수의 데이터에 대해 Fine-Tuning 하겠다는 의미입니다. 그래프의 x축이 각 클래스당 라벨링된 학습 데이터의 개수를 의미합니다. CLIP이 나오기 전 여러 방법론중에서 BiT-M (BackBone : ResNet-152x2 / ImageNet-21K 데이터셋으로 학습 / )가 비교적 좋은 성능을 보였습니다. Zero-Shot CLIP도 성능이 비슷한데, BiT-M은 각 class당 16개의 데이터셋을 추가로 학습해야한다는 점에서 추가학습을 하지않은 Zero-Shot CLIP이 비교적 효율적인 모델이라고 할 수 있습니다.
+Few-Shot Linear Probes과 성능 비교도 진행했습니다. Few-Shot 의 의미는 각 클래스당 적은 수의 데이터에 대해 Fine-Tuning 하겠다는 의미입니다. 그래프의 x축이 각 클래스당 라벨링된 학습 데이터의 개수를 의미합니다. CLIP이 나오기 전 여러 방법론 중에서 BiT-M(BackBone : ResNet-152x2 / ImageNet-21K 데이터셋으로 학습)이 비교적 좋은 성능을 보였습니다. Zero-Shot CLIP도 성능이 비슷한데, BiT-M은 각 Class당 16개의 데이터셋을 추가로 학습해야 한다는 점에서 추가 학습을 하지 않은 Zero-Shot CLIP이 비교적 효율적인 모델이라고 할 수 있습니다.
 
 ### **상당히 높은 효율성**
 
@@ -134,7 +132,7 @@ CLIP은 Image Encoder와 Text Encoder를 학습시켜야합니다. 기존 Image-
 
 [https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
-x축은 학습에 사용된 이미지 개수를 의미합니다. y축은 ImageNet 데이터셋에 Zero-Shot Prediction을 통한 정확도를 의미합니다. Transformer Language 모델은 이미지에서 텍스트를 예측하는 Transformer 구조기반의 모델입니다. 논문에서는 Transformer 구조 기반의 Language 모델은 Zero-Shot Prediction의 정확도가 낮음을 실험적으로 보였습니다. 같은 성능에 놓고 비교하면, 해당 모델에 비해서 Bag of Words Prediction의 효율이 비교적 더 좋았습니다. Bag of Words Prediction은 모델을 통해 순서까지 포함한 정확한 단어 예측이 아니라 순서에 상관없이 어떤 단어가 이미지 설명에서 발생하는지 예측하는 방법입니다. 다시 말해, 이미지를 보고 단어의 순서에 상관없이 [“cat”, “my”, “cute”] 이라고 예측한다면, 올바른 예측으로 보겠다는 겁니다. 그리고 해당 논문에서 제시하는 방법론인 CLIP은 Bag of Words Prediction 보다도 상대적으로 더 좋은 효율을 보입니다. 이렇게 효율성이 높아진 이유는 이미지와 텍스트를 연결하는 방식으로 Contrastive Method를 채택했기 때문이라고 이야기합니다.
+x축은 학습에 사용된 이미지 개수를 의미합니다. y축은 ImageNet 데이터셋에 Zero-Shot Prediction을 통한 정확도를 의미합니다. Transformer Language 모델은 이미지에서 텍스트를 예측하는 Transformer 구조 기반의 모델입니다. 논문에서는 Transformer 구조 기반의 Language 모델은 Zero-Shot Prediction의 정확도가 낮음을 실험적으로 보였습니다. 같은 성능에 놓고 비교하면, 해당 모델에 비해서 Bag of Words Prediction의 효율이 비교적 더 좋았습니다. Bag of Words Prediction은 모델을 통해 순서까지 포함한 정확한 단어 예측이 아니라 순서에 상관없이 어떤 단어가 이미지 설명에서 발생하는지 예측하는 방법입니다. 다시 말해, 이미지를 보고 단어의 순서에 상관없이 [“cat”, “my”, “cute”] 이라고 예측한다면, 올바른 예측으로 보겠다는 겁니다. 그리고 해당 논문에서 제시하는 방법론인 CLIP은 Bag of Words Prediction 보다도 상대적으로 더 좋은 효율을 보입니다. 이렇게 효율성이 높아진 이유는 이미지와 텍스트를 연결하는 방식으로 Contrastive Method를 채택했기 때문이라고 이야기합니다.
 
 ### **유연성 및 일반화**
 
@@ -142,14 +140,14 @@ x축은 학습에 사용된 이미지 개수를 의미합니다. y축은 ImageNe
 
 [https://openai.com/blog/clip/](https://openai.com/blog/clip/)
 
-CLIP은 광범위한 이미지들을 직접적으로 설명한 텍스트를 토대로 학습했기 때문에 기존 ImageNet의 pre-trained 모델에 비해 더 유연하고 일반화된 모델이라고 소개합니다. 이를 확인하기위해 분류 문제 뿐만 아니라 OCR, 비디오에서 activity 인식 그리고 geo-localization 등 다양한 문제를 반영하는 27개의 데이터셋에 측정하여 다음과 같이 시각화를 했습니다. 타 모델에 비해 CLIP-ViT가 성능이 비교적 좋으며, CLIP의 Image Encoder의 scale이 커질 수록 더 높은 성능을 가집니다.
+CLIP은 광범위한 이미지들을 직접적으로 설명한 텍스트를 토대로 학습했기 때문에 기존 ImageNet의 pre-trained 모델에 비해 더 유연하고 일반화된 모델이라고 소개합니다. 이를 확인하기 위해 분류 문제 뿐만 아니라 OCR, 비디오에서 Activity 인식 그리고 Geo-Localization 등 다양한 문제를 반영하는 27개의 데이터셋에 측정하여 다음과 같이 시각화를 했습니다. 타 모델에 비해 CLIP-ViT가 성능이 비교적 좋으며, CLIP의 Image Encoder의 Scale이 커질 수록 더 높은 성능을 가집니다.
 
-## 서비스 도입이 가능할까?
+## 서비스 기능화
 
-개인적인 의견으로는 기존 Image-Captioning 모델보다 효율성 측면에서는 비교적 적용해 볼 만하다고 생각합니다. 다만, 정말로 좋을지는 장담하기 힘들 것 같습니다. 우선 고려해야할 사항중 하나는 데이터의 정합성이 검증됐다는 가정하에 이미지를 설명하는 키워드의 개수를 구체적으로 지정할 것인지를 생각해볼 수 있겠습니다. 이에 따라서 Multi-Label 분류 모델로 방향을 바꿀수도 있기 때문입니다. 내부적으로 쿼리를 통해 검색 결과를 확인할 수 있는 시스템은 있기 때문에 몇가지 중요한 의사결정만 된다면 모델을 만드는데에 큰 무리가 없을거라 생각합니다. 모델을 만든 후에는 서비스 확장을 어떻게 할지도 중요한 논의사항인데 이 부분은 기획팀과 이야기해 볼 예정입니다.
+위와 같은 결과를 통해 볼 때 기존 Image-Captioning 모델보다 효율성 측면에서는 우위를 가지고 있는 부분이 있다고 생각합니다. 다만 실제 서비스에서 데이터의 정합성 및 이미지를 설명하는 키워드의 개수의 정의 등에 따라 의미있는 결과를 얻을 수 있을지 추가적인 검증이 필요합니다. 이러한 검증 과정을 거쳐 Multi-Label 분류 모델로 방향을 바꿀 수도 있으며, 이후의 프로젝트 진행에 따라 더 효율적인 방법을 선택할 계획입니다. 
 
 ## 참조
 
-- 논문링크 : [https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
-- 블로그 : [https://openai.com/blog/clip/](https://openai.com/blog/clip/)
-- 유투브 설명 : [https://www.youtube.com/watch?v=T9XSU0pKX2E&t=2388s](https://www.youtube.com/watch?v=T9XSU0pKX2E&t=2388s)
+- [논문링크](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
+- [블로그](https://openai.com/blog/clip/)
+- [유튜브 설명](https://www.youtube.com/watch?v=T9XSU0pKX2E&t=2388s)
