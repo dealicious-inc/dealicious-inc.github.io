@@ -2,27 +2,44 @@
 layout: default
 title: Home
 ---
-<ol class="post-list">
-    {% for post in site.posts %}
-    <li class="post-list__item">
-        <a href="{{ post.url }}">
-            <img src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
-            <div>
-                <div class="post-list__item--title">
-                    {{ post.file }}
+<div class="home-container">
+    <ol class="post-list">
+        {% for post in paginator.posts %}
+        <li class="post-list-item">
+            <div class="post-list-item__tag-list">
+                {% for tag in post.tags %}
+                <div class="post-list-item__tag-item">
+                    #{{ tag }}
                 </div>
-                <div class="post-list__item--title">
-                    {{ post.title }}
+                {% endfor %}
+            </div>
+            <a href="{{ post.url }}">
+                <div>
+                    <div class="post-list-item__image">
+                        {{ post.file }}
+                    </div>
+                    <div class="post-list-item__title">
+                        {{ post.title }}
+                    </div>
+                    <div class="post-list-item__description">
+                        {{ post.description }}
+                    </div>
                 </div>
-                <div class="post-list__item--date">
-                    {{ post.date }}
-                </div>
+                <img src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
+            </a>
+            <div class="post-list-item__bottom">
                 {% assign writer = site.data.writers[post.writer] %}
-                <div class="post-list__item--writer">
+                <div class="post-list-item__bottom--writer">
                     {{ writer.name }}
                 </div>
+                <div class="split-line"></div>
+                <div class="post-list-item__bottom--date">
+                    {{ post.date | date: "%Y.%m.%d"}}
+                </div>
             </div>
-        </a>
-    </li>
-    {% endfor %}
-</ol>
+        </li>
+        {% endfor %}
+    </ol>
+    {% include tags.html %}
+</div>
+{% include pagination.html %}

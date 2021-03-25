@@ -1,0 +1,29 @@
+{% if page.title == "Home" %}
+<header class="header--home">
+    <div class="header-text">
+        Dealicious blog
+    </div>
+    <div class="header-text--white">
+        By developers
+    </div>
+    <div>
+        딜리셔스 기술 블로그 딜리셔스 개발자 블로그
+    </div>
+</header>
+{% else %}
+<header class="header">
+    <div class="header-text">
+        <p class="header-text--title">{{ page.title }}</p>
+        <p class="header-text--description"> {{ page.description }}</p>
+        <div class="header-text--writer">
+            <div class="post-list-item__bottom--writer">
+                {{ page.writer }}
+            </div>
+            <div class="split-line"></div>
+            <div class="post-list-item__bottom--date">
+                {{ page.date | date: "%Y.%m.%d"}}
+            </div>
+        </div>
+    </div>
+</header>
+{% endif %}

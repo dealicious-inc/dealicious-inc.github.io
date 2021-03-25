@@ -2,3 +2,13 @@
 ---
 @import "main";
 @import "rouge";
+
+@font-face {
+  font-family: "DoHyeon";
+  src: url('../fonts/DoHyeon-Regular.ttf') format( 'truetype');
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url('../fonts/Poppins-Bold.ttf') format( 'truetype');
+}

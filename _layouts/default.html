@@ -1,35 +1,38 @@
 <!doctype html>
 <html>
 <head>
+    <script src="/assets/js/scrollTop.js"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    <title>딜리셔스 기술블로그-{{ page.title }}</title>
 </head>
 <body>
+<div class="navigation__top"></div>
 <nav class="navigation">
-    <a href="/">
-        <img class="logo-image" src="/assets/image/default/logo-05-01.png" >
-    </a>
     <ul class="navigation__list">
-        <li>
-            <a href="/">POSTS</a>
+        <li class="navigation__list-item">
+            <a href="/">
+                <img class="logo-image" src="/assets/image/default/img-logo-dealiciou-86.svg" >
+                기술 블로그
+            </a>
         </li>
-        <li>
-            <a href="/about">ABOUT</a>
-        </li>
-        <li>
-            <a href="/review">CONTACT</a>
-        </li>
+        <ul>
+            <li class="navigation__list-item--sub-menu">
+                <a href="/about">ABOUT</a>
+            </li>
+            <li class="navigation__list-item--sub-menu">
+                <a href="/review">CONTACT</a>
+            </li>
+        </ul>
     </ul>
 </nav>
-<header class="header">
-    {{ page.title }}
-</header>
+{% include header.html %}
 <section class="contents-wrapper">
     {{ content }}
 </section>
 <footer class="footer">
-    Copyright junnis0123@deali.net
+    Copyright © Dealicious Corp.
 </footer>
+{% include topButton.html %}
 </body>
 </html>

@@ -1,7 +1,7 @@
 sass:
   sass_dir: _sass
-
 paginate: 5
+paginate_path: "/page:num/"
 
 markdown: kramdown
 highlighter: rouge
@@ -11,3 +11,4 @@ kramdown:
 
 plugins:
   - jemoji
+  - jekyll-paginate
