@@ -21,9 +21,9 @@ layout: default
         <div class="tag-area">
             <div class="tag-area__title">Tag</div>
             {% for tag in page.tags %}
-            <div class="tag-area__item">
-                {{ tag }}
-            </div>
+            <li class="tag-area__item">
+                <a class="tag-area__item--link" href="/tags/{{ tag | slugify }}/"> {{ tag }} </a>
+            </li>
             {% endfor %}
         </div>
     {% endif %}

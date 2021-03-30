@@ -79,7 +79,7 @@ body {
       text-align: center;
       display: flex;
       max-width: 100%;
-      padding: 10px 40px;
+      padding: 20px;
       border: solid 2px #efefef;
       justify-content: center;
       margin-left: auto;
@@ -177,9 +177,8 @@ main {
     }
   }
   &--home {
-    background-image: url("../../assets/image/default/bitmap.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: linear-gradient(to right, #143EA9 , #20AEBB);
+    position: relative;
     height: 400px;
     display: flex;
     justify-content: center;
@@ -189,6 +188,13 @@ main {
     line-height: 3.75;
     text-align: center;
     color: #ffffff;
+    .deco-image {
+      background: url("../../assets/image/default/bg-img@3x.png") no-repeat center;
+      background-size: contain;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
     .header-text {
       text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.08);
       font-family: Poppins;
@@ -361,9 +367,6 @@ main {
     width: 720px;
     .post-list-item {
       margin: 0;
-      &:hover {
-        background: rgba(0, 0, 0, 0.04);
-      }
       >a {
         text-decoration: none;
         display: flex;
@@ -404,12 +407,17 @@ main {
         :last-child {
           margin-right: 0;
         }
+        &--link {
+          text-decoration: none;
+          color: #104f68;
+        }
       }
       &__title {
         margin-top: 14px;
-        font-family: DoHyeon;
+        font-family: GmarketSans;
         -webkit-text-stroke: 1px #222222;
         font-size: 26px;
+        font-weight: 500;
         color: #222222;
         margin-bottom: 12px;
       }
@@ -437,7 +445,6 @@ main {
   margin: 0 8px 0;
   background-color: #d8d8d8;
 }
-
 .pagination {
   display: flex;
   margin-top: 82px;
@@ -460,7 +467,6 @@ main {
     }
   }
 }
-
 .scroll-top-button {
   opacity: 0;
   outline: none;
@@ -510,13 +516,27 @@ main {
     font-family: NotoSans;
     margin-right: 8px;
     margin-bottom: 8px;
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
     &--link {
       color: #666666;
       text-decoration: none;
     }
   }
 }
-
+.tag-title {
+  margin: 48px 6px 50px 0;
+  font-family: GmarketSansBold;
+  font-size: 30px;
+  font-weight: bold;
+  color: #232323;
+  text-align: left;
+  &--count {
+    font-family: GmarketSans;
+    font-size: 30px;
+  }
+}
 .home-container {
   display: flex;
   justify-content: space-between;

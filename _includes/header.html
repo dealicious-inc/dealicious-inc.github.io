@@ -1,16 +1,18 @@
 {% if page.title == "Home" %}
 <header class="header--home">
     <div class="header-text">
-        Dealicious Blog
+        DEALICIOUS BLOG
     </div>
     <div class="header-text--white">
-        By Developers
+        BY DEVELOPERS
     </div>
     <div>
-        딜리셔스 기술 개발 블로그
+        딜리셔스 기술 블로그
     </div>
+    <div class="deco-image"></div>
 </header>
-{% else %}
+{% endif %}
+{% if page.layout == "page" %}
 <header class="header">
     <div class="header-text">
         <p class="header-text--title">{{ page.title }}</p>
