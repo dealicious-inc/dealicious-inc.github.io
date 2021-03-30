@@ -9,7 +9,7 @@ thumbnail: 'posts/2020-12-30-actions-01.png'
 
 저는 딜리셔스 클라이언트 개발팀에서 안드로이드 개발을 담당하는 정수천입니다.
 
-올해 초 클라이언트 개발팀의 repository(이하 repo)는 **Bitbucket**에서 **GitHub**로 이사를 갔습니다. 
+2020년 초 클라이언트 개발팀의 repository(이하 repo)는 **Bitbucket**에서 **GitHub**로 이사를 갔습니다. 
 
 GitHub repo에서 이것저것 구경하던 중 상단 탭에 떠있는 **Actions** 메뉴가 눈에 들어왔습니다.
 
@@ -40,7 +40,7 @@ GitHub repo에서 이것저것 구경하던 중 상단 탭에 떠있는 **Action
 - 빌드 스크립트 파일 위치 : repo/.github/workflows/xxx.yml
 - 빌드 스크립트 파일은 **YAML**(*.yml)을 사용합니다. (“야믈”이라고 읽습니다. [위키](https://en.wikipedia.org/wiki/YAML){:target="_blank"})안드로이드 개발하면서 접할 일은 거의 없지만 Spring Boot 프레임워크 쪽에서는 서버 설정할 때 주로 쓰이는 확장자입니다. 계층 구조로 configuration하는 방식이며, 전체 구조가 한눈에 들어옵니다.다만 space 하나로도 컴파일 에러가 난다는 점은 명심해야 합니다.
 - 마켓 플레이스([공식페이지](https://github.com/marketplace?type=actions){:target="_blank"})
-    - 현재 약 6,200개 이상의 플러그인 존재 (*참고로 젠킨스는 약 1,000개 )
+    - 현재 약 7,740개 이상의 플러그인 존재 (*참고로 젠킨스는 약 1,000개 )
     - 안드로이드 관련 플러그인 : 46개
 - 비용 ([문서](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions){:target="_blank"})
     - public repo 무료
