@@ -2,6 +2,8 @@
 layout: page
 title: GitHub Actions로 안드로이드 CI환경 구축하기 (Goodbye Jenkins)
 writer: 정수천
+description: "Github Actions로 쾌적한 자동화 빌드 구성하기"
+tags: [Android, Github Actions, CI, 빌드자동화, 배포]
 thumbnail: 'posts/2020-12-30-actions-01.png'
 ---
 
