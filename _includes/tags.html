@@ -1,21 +1,6 @@
-{% assign rawtags = "" %}
-{% for post in site.posts %}
-{% assign ttags = post.tags | join:'|' | append:'|' %}
-{% assign rawtags = rawtags | append:ttags %}
-{% endfor %}
-{% assign rawtags = rawtags | split:'|' | sort %}
-{% assign tags = "" %}
-{% for tag in rawtags %}
-{% if tag != "" %}
-{% if tags == "" %}
-{% assign tags = tag | split:'|' %}
+{% if site.tags != "" %}
+{% include collecttags.html %}
 {% endif %}
-{% unless tags contains tag %}
-{% assign tags = tags | join:'|' | append:'|' | append:tag | split:'|' %}
-{% endunless %}
-{% endif %}
-{% endfor %}
-
 <div class="tag-area--index">
     <div class="tag-area__title">
         Tag
@@ -23,7 +8,7 @@
     <ul class="tag-area__list">
         {% for tag in tags %}
         <li class="tag-area__item">
-            <a class="tag-area__item--link" href="#{{ tag | slugify }}"> {{ tag }} </a>
+            <a class="tag-area__item--link" href="/tags/{{ tag | slugify }}/"> {{ tag }} </a>
         </li>
         {% endfor %}
     </ul>

@@ -2,6 +2,8 @@
 layout: page
 title: '[논문 리뷰] Learning Transferable Visual Models From Natural Language Supervision'
 writer: 배병선
+description: "최근 OpenAI에서 게재한 논문으로 이미지와 텍스트를 서로 대조하여 학습시킨 CLIP이라는 방법론에 대해 리뷰해 봤습니다."
+tags: [ML, 논문리뷰, Image Captioning, Contrastive Learning]
 thumbnail: 'posts/2021-03-22-learning-transferable-visual-models/4.png'
 ---
 

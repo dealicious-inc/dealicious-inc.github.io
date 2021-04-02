@@ -2,6 +2,8 @@
 layout: page
 title: AWS Fargate 서비스 운영 체험기
 writer: 조웅
+description: "Airflow를 Dockerize하여 AWS Fargate로 구성해서 관리하기"
+tags: [AWS, Fargate, Airflow]
 thumbnail: 'posts/2020-12-24-fargate-01.png'
 ---
 

@@ -9,7 +9,7 @@ title: Home
             <div class="post-list-item__tag-list">
                 {% for tag in post.tags %}
                 <div class="post-list-item__tag-item">
-                    #{{ tag }}
+                    <a class="post-list-item__tag-item--link" href="/tags/{{ tag | slugify }}/"> #{{ tag }} </a>
                 </div>
                 {% endfor %}
             </div>
