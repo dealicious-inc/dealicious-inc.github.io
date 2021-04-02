@@ -285,6 +285,7 @@ main {
   }
 }
 .contents-wrapper {
+  overflow: auto;
   margin-left: auto;
   margin-right: auto;
   background: white;
@@ -293,6 +294,9 @@ main {
   flex-direction: column;
   align-items: center;
   flex: 1;
+  @media (max-width: 720px) {
+    align-items: flex-start;
+  }
   .post {
     width: 840px;
     position: relative;
@@ -509,6 +513,7 @@ main {
     padding: 0;
   }
   &__item {
+    position: relative;
     list-style: none;
     padding: 0 12px;
     height: 32px;
@@ -522,6 +527,17 @@ main {
     margin-bottom: 8px;
     &:hover {
       background: rgba(0, 0, 0, 0.04);
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        border-radius: 16px;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.04);
+        display: block;
+        pointer-events: none;
+      }
     }
     &--link {
       color: #666666;
