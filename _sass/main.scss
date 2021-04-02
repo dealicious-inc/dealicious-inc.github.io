@@ -154,7 +154,8 @@ main {
     padding-top: 40px;
     width: 840px;
     &--title {
-      font-family: NotoSansCJKkr;
+      font-family: GmarketSans;
+      font-weight: 500;
       line-height: 1.38;
       -webkit-text-stroke: 1px #222222;
       font-size: 34px;
@@ -185,7 +186,6 @@ main {
     flex-direction: column;
     font-family: NotoSansCJKkr;
     font-size: 16px;
-    line-height: 3.75;
     text-align: center;
     color: #ffffff;
     .deco-image {
@@ -196,6 +196,7 @@ main {
       height: 100%;
     }
     .header-text {
+      padding-top: 19px;
       text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.08);
       font-family: Poppins;
       font-size: 55px;
@@ -206,6 +207,8 @@ main {
       &--white {
         @extend .header-text;
         color: white;
+        padding-top: 0;
+        margin-bottom: 19px;
       }
     }
   }
