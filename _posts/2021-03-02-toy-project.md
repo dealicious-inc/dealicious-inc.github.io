@@ -3,7 +3,7 @@ layout: page
 title: '딜리셔스 개발팀의 toy project'
 writer: 서혜리
 description: "딜리셔스 개발팀 (현 연구개발센터)의 자유로운 토이프로젝트 문화에 대해서 자랑해 보았습니다."
-tags: [Culture, module, Ruby on Rails, refactiring]
+tags: [culture, module, Ruby on Rails, refactoring]
 thumbnail: 'posts/2020-12-30-toy-project-04.png'
 ---
 
