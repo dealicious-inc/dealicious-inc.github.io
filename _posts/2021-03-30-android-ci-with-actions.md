@@ -2,6 +2,8 @@
 layout: page
 title: GitHub Actions로 안드로이드 CI환경 구축하기 (Goodbye Jenkins)
 writer: 정수천
+description: "Github Actions로 쾌적한 자동화 빌드 구성하기"
+tags: [Android, Github Actions, CI, 빌드자동화, 배포]
 thumbnail: 'posts/2020-12-30-actions-01.png'
 ---
 
@@ -31,7 +33,7 @@ GitHub repo에서 이것저것 구경하던 중 상단 탭에 떠있는 **Action
 
 하지만 GitHub repo에 들어갈 때마다 **Actions** 메뉴가 쓰이지 않고 있으면 계속 거슬릴 것이란 점과 나온 지 얼마 되지 않은 최신 기술(2019년 11월 출시)을 적용한다는 설렘, 마지막으로 일단 집을 옮겼으니 썩 친근하지 않았던 집사(*Jenkins*, 2011년 02월 출시)도 바꿔보자 하는 마음으로 기술을 검토하고 직접 적용해 보았습니다.
 
-![](/assets/image/posts/2020-12-30-actions-03.png)
+![](/assets/image/posts/2020-12-30-actions-03.jpeg)
 
 이 포스팅에는 **GitHub Actions**의 개략적인 소개와 구축 방법, 환경 변수를 이용해 키스토어 파일과 credential 정보를 안전하게 사용하는 방법, S3를 이용하여 APK 바이너리를 저장하고 공유하는 방법의 내용을 담고 있습니다. Unit Test, UI Test 등의 내용은 포함되어 있지 않습니다.
 
