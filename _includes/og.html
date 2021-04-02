@@ -1,5 +1,5 @@
 <meta content="{{ site.title }}" property="og:site_name">
-{% if page.title %}
+{% if page.layout === 'page' %}
 <meta content="{{ page.title }}" property="og:title">
 {% else %}
 <meta content="{{ site.title }}" property="og:title">
@@ -16,7 +16,7 @@
 <meta content="{{ page.writer }}" property="article:writer">
 {% endif %}
 {% if page.thumbnail %}
-<meta content="{{ site.url }}/{{ page.thumbnail }}" property="og:image">
+<meta content="https://dealicious-inc.github.io/{{ page.thumbnail }}" property="og:image">
 {% endif %}
 {% if page.tags %}
 {% for tag in page.tags %}
