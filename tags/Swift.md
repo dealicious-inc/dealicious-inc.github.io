@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Swift
-permalink: /tags/Swift/
+permalink: /tags/swift/
 ---

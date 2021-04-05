@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Lerna
-permalink: /tags/Lerna/
+permalink: /tags/lerna/
 ---

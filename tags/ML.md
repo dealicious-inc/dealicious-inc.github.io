@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: ML
-permalink: /tags/ML/
+permalink: /tags/ml/
 ---

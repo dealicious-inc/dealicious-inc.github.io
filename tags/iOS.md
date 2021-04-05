@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: iOS
-permalink: /tags/iOS/
+permalink: /tags/ios/
 ---

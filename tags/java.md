@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Java
-permalink: /tags/Java/
+permalink: /tags/java/
 ---
