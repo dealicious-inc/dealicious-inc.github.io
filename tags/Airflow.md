@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Airflow
-permalink: /tags/Airflow/
+permalink: /tags/airflow/
 ---
