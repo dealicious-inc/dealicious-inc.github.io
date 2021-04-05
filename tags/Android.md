@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Android
-permalink: /tags/Android/
+permalink: /tags/android/
 ---
