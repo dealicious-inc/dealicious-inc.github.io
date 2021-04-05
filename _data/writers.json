@@ -70,5 +70,17 @@
     "thumbnail": "/assets/image/writers/배병선.jpeg",
     "comment": "에러와 멀어지고 싶다면, 에러와 친해져라",
     "career": "딜리셔스 ML 엔지니어"
-  }
+  },
+  "정석" : {
+    "name": "정석",
+    "thumbnail": "/assets/image/writers/정석.jpg",
+    "comment": "'미쳐야 미친다' - 개발에 미쳐보고자 노력하는 개발자",
+    "career": "딜리셔스 백엔드 개발자"
+  },
+  "주인재" : {
+    "name": "주인재",
+    "thumbnail": "/assets/image/writers/주인재.jpg",
+    "comment": "거인을 향해",
+    "career": "딜리셔스 백엔드 개발자"
+  },
 }
