@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: CocoaPod
-permalink: /tags/CocoaPod/
+permalink: /tags/cocoapod/
 ---

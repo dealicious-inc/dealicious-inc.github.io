@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: AWS
-permalink: /tags/AWS/
+permalink: /tags/aws/
 ---
