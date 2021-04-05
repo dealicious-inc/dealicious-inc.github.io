@@ -374,7 +374,7 @@ main {
   .post-list {
     margin: 0;
     padding: 0;
-    width: 720px;
+    max-width: 720px;
     .post-list-item {
       margin: 0;
       >a {
@@ -500,7 +500,7 @@ main {
   &--index {
     margin-top: 0;
     padding-top: 40px;
-    width: 240px;
+    min-width: 240px;
     margin-left: 64px;
   }
   &__title {
