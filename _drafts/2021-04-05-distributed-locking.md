@@ -3,7 +3,7 @@ layout: page
 title: '모든 돈은 빌링으로 흐른다 : Redisson을 활용한 분산 락 처리'
 writer: ['정석', '주인재']
 description: "멀티서버 환경에서 동시성 보장을 위해 Redisson으로 분산 락을 구현해 보았습니다."
-tags: ['Java', 'Spring Boot', 'Redisson']
+tags: ['Java', 'Spring Boot', 'backend']
 thumbnail: 'posts/2021-03-22-learning-transferable-visual-models/4.png'
 ---
 
@@ -270,7 +270,7 @@ lock.lock(10, TimeUnit.SECONDS);
 
 10초 뒤에 Lock을 해제하도록 명시해주는 메소드 호출입니다.
 
-#####(3) 획득할 때까지 대기 시간까지 지정해주는 방법
+##### 획득할 때까지 대기 시간까지 지정해주는 방법
 
 `lock.tryLock` Method의 첫 번째 인자엔 Lock을 얻기 위해 최대 언제까지 기다릴 것인지에 대한 값을 입력하시면 되고, 두 번째는 Lock 해제 시간에 대한 값을 입력해 주시면 됩니다.
 
