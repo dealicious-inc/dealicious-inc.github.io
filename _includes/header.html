@@ -18,9 +18,11 @@
         <p class="header-text--title">{{ page.title }}</p>
         <p class="header-text--description"> {{ page.description }}</p>
         <div class="header-text--writer">
+            {% for writer in page.writer %}
             <div class="post-list-item__bottom--writer">
-                {{ page.writer }}
+                {{ writer }}{% if forloop.last %}{% else %},&nbsp{% endif %}
             </div>
+            {% endfor %}
             <div class="split-line"></div>
             <div class="post-list-item__bottom--date">
                 {{ page.date | date: "%Y.%m.%d"}}
