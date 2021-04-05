@@ -336,6 +336,9 @@ main {
     align-items: center;
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
+    & + .writer-info {
+      margin-top: 20px;
+    }
 
     &__image {
       width: 64px;
