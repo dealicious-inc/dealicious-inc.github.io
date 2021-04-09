@@ -83,4 +83,10 @@
     "comment": "거인을 향해",
     "career": "딜리셔스 백엔드 개발자"
   },
+  "장중수" : {
+    "name": "장중수",
+    "thumbnail": "/assets/image/writers/장중수.jpg",
+    "comment": "No Pain, No Gain",
+    "career": "딜리셔스 백엔드 개발자"
+  },
 }
