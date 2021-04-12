@@ -322,7 +322,7 @@ public class StateEventService {
 
 State Machine은 아래와 같은 형태로 관리됩니다. 
 
-![](/assets/image/posts/2021-04-12-state-machine/state_machin_class.PNG)
+![](/assets/image/posts/2021-04-12-state-machine/state_machin_class.png)
 
 * 좌측 BOX는 State Machine입니다.
 	* State에 대한 `enum` 정의와, Event `enum` 정의, Transition 관리 등 State Machine이 수행되는 부분입니다.
