@@ -1,0 +1,29 @@
+<meta content="딜리셔스 기술블로그" property="og:site_name">
+{% if page.layout == 'page' %}
+<meta content="{{ page.title }}" property="og:title">
+{% else %}
+<meta data-rh="true" content="딜리셔스 기술블로그" property="og:title">
+{% endif %}
+{% if page.title %}
+<meta content="article" property="og:type">
+{% else %}
+<meta content="website" property="og:type">
+{% endif %}
+{% if page.description %}
+<meta content="{{ page.description }}" property="og:description">
+{% else %}
+<meta content="딜리셔스 기술블로그" property="og:description">
+{% endif %}
+{% if page.writer %}
+<meta content="{{ page.writer }}" property="article:writer">
+{% endif %}
+{% if page.thumbnail %}
+<meta content="https://dealicious-inc.github.io/assets/image/{{ page.thumbnail }}" property="og:image">
+{% else %}
+<meta content="https://dealicious-inc.github.io/assets/image/default/img-logo-dealiciou-86.svg" property="og:image">
+{% endif %}
+{% if page.tags %}
+{% for tag in page.tags %}
+<meta content="{{ tag }}" property="article:tag">
+{% endfor %}
+{% endif %}

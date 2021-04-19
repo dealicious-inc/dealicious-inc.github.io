@@ -1,9 +1,13 @@
 <!doctype html>
 <html>
 <head>
+    {% include og.html %}
     <script src="/assets/js/scrollTop.js"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <meta property="og:url" content="https://dealicious-inc.github.io"/>
+    <link rel="icon" href="https://dealicious-inc.github.io/favicon_32.png">
     <meta charset="utf-8">
+    <meta name="description" content="딜리셔스 기술 블로그">
     <title>딜리셔스 기술 블로그-{{ page.title }}</title>
 </head>
 <body>
@@ -31,7 +35,7 @@
     {{ content }}
 </section>
 <footer class="footer">
-    Copyright © Dealicious Corp.
+    Copyright © Dealicious Inc.
 </footer>
 {% include topButton.html %}
 </body>

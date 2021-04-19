@@ -29,10 +29,11 @@ layout: default
                     <img src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
                 </a>
                 <div class="post-list-item__bottom">
-                    {% assign writer = site.data.writers[post.writer] %}
+                    {% for writer in post.writer %}
                     <div class="post-list-item__bottom--writer">
-                        {{ writer.name }}
+                        {{ writer }}{% if forloop.last %}{% else %},&nbsp{% endif %}
                     </div>
+                    {% endfor %}
                     <div class="split-line"></div>
                     <div class="post-list-item__bottom--date">
                         {{ post.date | date: "%Y.%m.%d"}}

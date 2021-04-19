@@ -5,18 +5,20 @@ layout: default
     <div>
         {{ content }}
     </div>
-    {% assign writer = site.data.writers[page.writer]  | default: site.data.writers["default"] %}
+    {% for writer in page.writer %}
+    {% assign writerData = site.data.writers[writer]  | default: site.data.writers["default"] %}
     <div class="writer-info">
-        <img class="writer-info__image" src="{{ writer.thumbnail }}">
+        <img class="writer-info__image" src="{{ writerData.thumbnail }}">
         <div class="writer-info__bubble">
             <div class="writer-info__title">
-                <p>{{ writer.name }}</p>
+                <p>{{ writerData.name }}</p>
                 <div class="split-line"></div>
-                <p>{{ writer.career }}</p>
+                <p>{{ writerData.career }}</p>
             </div>
-            <p class="writer-info__comment">"{{ writer.comment }}"</p>
+            <p class="writer-info__comment">"{{ writerData.comment }}"</p>
         </div>
     </div>
+    {% endfor %}
     {% if page.tags != blank %}
         <div class="tag-area">
             <div class="tag-area__title">Tag</div>

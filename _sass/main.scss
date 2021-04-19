@@ -154,7 +154,8 @@ main {
     padding-top: 40px;
     width: 840px;
     &--title {
-      font-family: NotoSansCJKkr;
+      font-family: GmarketSans;
+      font-weight: 500;
       line-height: 1.38;
       -webkit-text-stroke: 1px #222222;
       font-size: 34px;
@@ -185,7 +186,6 @@ main {
     flex-direction: column;
     font-family: NotoSansCJKkr;
     font-size: 16px;
-    line-height: 3.75;
     text-align: center;
     color: #ffffff;
     .deco-image {
@@ -196,6 +196,7 @@ main {
       height: 100%;
     }
     .header-text {
+      padding-top: 19px;
       text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.08);
       font-family: Poppins;
       font-size: 55px;
@@ -206,6 +207,8 @@ main {
       &--white {
         @extend .header-text;
         color: white;
+        padding-top: 0;
+        margin-bottom: 19px;
       }
     }
   }
@@ -282,6 +285,7 @@ main {
   }
 }
 .contents-wrapper {
+  overflow: auto;
   margin-left: auto;
   margin-right: auto;
   background: white;
@@ -290,6 +294,9 @@ main {
   flex-direction: column;
   align-items: center;
   flex: 1;
+  @media (max-width: 720px) {
+    align-items: flex-start;
+  }
   .post {
     width: 840px;
     position: relative;
@@ -329,6 +336,9 @@ main {
     align-items: center;
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
+    & + .writer-info {
+      margin-top: 20px;
+    }
 
     &__image {
       width: 64px;
@@ -364,7 +374,7 @@ main {
   .post-list {
     margin: 0;
     padding: 0;
-    width: 720px;
+    max-width: 720px;
     .post-list-item {
       margin: 0;
       >a {
@@ -386,6 +396,7 @@ main {
           height: 120px;
           border-radius: 4px;
           border: solid 1px #e0e0e0;
+          margin-left: 32px;
         }
       }
       list-style: none;
@@ -489,7 +500,8 @@ main {
   &--index {
     margin-top: 0;
     padding-top: 40px;
-    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
     margin-left: 64px;
   }
   &__title {
@@ -505,6 +517,7 @@ main {
     padding: 0;
   }
   &__item {
+    position: relative;
     list-style: none;
     padding: 0 12px;
     height: 32px;
@@ -518,6 +531,17 @@ main {
     margin-bottom: 8px;
     &:hover {
       background: rgba(0, 0, 0, 0.04);
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        border-radius: 16px;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.04);
+        display: block;
+        pointer-events: none;
+      }
     }
     &--link {
       color: #666666;
@@ -538,6 +562,7 @@ main {
   }
 }
 .home-container {
+  padding: 0 32px;
   display: flex;
   justify-content: space-between;
 }
