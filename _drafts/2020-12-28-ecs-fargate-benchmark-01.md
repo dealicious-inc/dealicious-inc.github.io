@@ -2,6 +2,8 @@
 layout: page
 title: ECS Fagate 성능 측정하기 - 구축부터 Benchmark까지 (상)
 writer: 황문주
+description: "ECS Fargate 에 대해 알아봅니다."
+tags: [AWS, ECS, Fargate, 성능측정]
 thumbnail: 'posts/2020-12-28-ecs-fargate-benchmark-01.png'
 ---
 
@@ -12,16 +14,16 @@ thumbnail: 'posts/2020-12-28-ecs-fargate-benchmark-01.png'
 ### Cloud Native Application
 
 ![Cloud Native](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-01.png)
-*출처: [https://cloudn.com.au/cloud-native-approach.html](https://cloudn.com.au/cloud-native-approach.html)*
+*출처: [https://cloudn.com.au/cloud-native-approach.html](https://cloudn.com.au/cloud-native-approach.html){:target="_blank"}*
 
 먼저 클라우드 네이티브란 클라우드 컴퓨팅 제공 모델의 장점을 활용하는 애플리케이션을 구축하고 실행하는 접근 방식입니다. 여기서 클라우드는 익히 알고 있는 프라이빗, 퍼블릭 및 하이브리드 클라우드 환경을 말하는 것이고, 클라우드 네이티브란 이러한 클라우드 환경 위에서 지속적인 개발과 자동화된 관리 환경을 제공하기 위한 특별한 설계방식을 말합니다. 즉, 클라우드 네이티브 애플리케이션이란 클라우드 환경 전체에 특화된 설계 방식 위에 만들어진 애플리케이션을 뜻합니다. 클라우드 네이티브 애플리케이션은 컨테이너를 통한 빠르고 관리하기 용이한 개발 환경 프로비저닝이 가능하다는 것과 개발부터 빌드, 배포에 이르는 애플리케이션 라이프 사이클을 자동화하여 실현할 수 있다는 것이 강점입니다.
 
 ![MSA](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-02.png)
-*출처: [https://itnext.io/outsystems-microservices-architecture-use-case-edf522608077](https://itnext.io/outsystems-microservices-architecture-use-case-edf522608077)*
+*출처: [https://itnext.io/outsystems-microservices-architecture-use-case-edf522608077](https://itnext.io/outsystems-microservices-architecture-use-case-edf522608077){:target="_blank"}*
 
 클라우드 네이티브 애플리케이션을 구축할 때, 특히 컨테이너를 도입하면 애플리케이션의 개발과 배포가 가상머신을 사용할 때 보다 굉장히 편해지고, 독립된 개발 환경 또한 보장받을 수 있습니다. 또한 마이크로 서비스(Micro-service) 구조를 통해서 여러 모듈을 독립된 형태로 구성할 수 있기 때문에 특정 언어에 종속되지 않고 각 모듈의 관리가 쉬워진다는 장점이 있습니다. (Microservice 와 Monolithic 의 차이에 대해서는 워낙 잘 알고 계실 것이라 생각하여 그림으로 대체 하겠습니다.)  따라서 컨테이너는 마이크로 서비스 구조에서 가장 많이 사용되고 있는 가상화 기술이기도 합니다.
 
-서론이 좀 길었는데요, 그래서 AWS에서는 이러한 클라우드 네이티브 애플리케이션 구축을 위한 컨테이너를 쉽게 관리하고 오케스트레이션 하기 위한 서비스로 ECS(Elastic Container Service)를 출시 했습니다. 서울 리전에는 2017년에 출시가 되었고, 현재까지 [수많은 업데이트](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/document_history.html)를 거치며 더더욱 사용하기 편리해지고 있습니다.  물론 요즘은 ECS 보다 EKS(Elastic Kubernetes Service)를 더 많이 사용하는 추세이지만, 이번 글에서는 AWS에서 제공하는 Fargate의 성능을 보는데 주안점을 두고 있기 때문에 비교적 수월하게 클러스터 생성이 가능한 ECS로 진행하도록 하겠습니다. (Fargate에 대한 설명은 아래에서 따로 확인하실 수 있습니다.)
+서론이 좀 길었는데요, 그래서 AWS에서는 이러한 클라우드 네이티브 애플리케이션 구축을 위한 컨테이너를 쉽게 관리하고 오케스트레이션 하기 위한 서비스로 ECS(Elastic Container Service)를 출시 했습니다. 서울 리전에는 2017년에 출시가 되었고, 현재까지 [수많은 업데이트](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/document_history.html){:target="_blank"}를 거치며 더더욱 사용하기 편리해지고 있습니다.  물론 요즘은 ECS 보다 EKS(Elastic Kubernetes Service)를 더 많이 사용하는 추세이지만, 이번 글에서는 AWS에서 제공하는 Fargate의 성능을 보는데 주안점을 두고 있기 때문에 비교적 수월하게 클러스터 생성이 가능한 ECS로 진행하도록 하겠습니다. (Fargate에 대한 설명은 아래에서 따로 확인하실 수 있습니다.)
 
 이 글에서는 ECS의 기본 개념들을 소개하고 간단한 클러스터 구축과 함께 Fargate의 네트워크 성능과 메모리 성능을 테스트하고 결과도 함께 살펴보도록 하겠습니다.
 
@@ -37,11 +39,11 @@ ECS가 아니더라도 컨테이너와 이미지는 도커를 공부하신 분�
 >
 > *용찬호, ⌜시작하세요! 도커/쿠버네티스⌟, 위키북스 中*
 
-위의 도서는 제가 처음 도커/쿠버네티스를 공부할 때 좋은 참고가 되었던 책이기도 해서 해당 내용을 가져와 보았습니다. 도커에 대한 또 하나의 재미있는 사실은 도커 컨테이너는 가상머신이 아닌 프로세스라는 것입니다. (해당 내용이 궁금하신 분은 [Daegwon Nacyot Kim 님이 작성하신 글](https://www.44bits.io/ko/post/is-docker-container-a-virtual-machine-or-a-process)을 참고하시면 좋을 것 같습니다.)
+위의 도서는 제가 처음 도커/쿠버네티스를 공부할 때 좋은 참고가 되었던 책이기도 해서 해당 내용을 가져와 보았습니다. 도커에 대한 또 하나의 재미있는 사실은 도커 컨테이너는 가상머신이 아닌 프로세스라는 것입니다. (해당 내용이 궁금하신 분은 [Daegwon Nacyot Kim 님이 작성하신 글](https://www.44bits.io/ko/post/is-docker-container-a-virtual-machine-or-a-process){:target="_blank"}을 참고하시면 좋을 것 같습니다.)
 
 ECS에서 말하는 컨테이너 또한 도커 컨테이너와 동일한 의미를 가지고 있습니다. ECS에 애플리케이션을 배포하려면 애플리케이션의 구성 요소가 컨테이너에서 실행되도록 설계해야 합니다. 즉 컨테이너는 코드, 런타임, 시스템 도구 및 라이브러리를 포함하여 애플리케이션을 실행하는데 필요한 모든 것을 포함하는 표준화된 소프트웨어 개발 단위입니다.
 
-![ECS](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-03.png)
+![ECS](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-03.png){:target="_blank"}
 
 컨테이너는 이미지라는 읽기 전용 템플릿에서 생성이 됩니다. 이미지는 일반적으로 컨테이너에 포함 된 모든 구성 요소를 지정하는 일반 텍스트 파일인 Dockerfile에서 빌드됩니다. 빌드된 후 이미지는 레지스트리에 저장되는데 ECS 클러스터에서 다운로드 및 실행할 수 있습니다. 컨테이너 레지스트리는 AWS에서 제공하는 컨테이너 레지스트리인 ECR, Docker Hub, 또는 자체적으로 레지스트리를 생성하여 저장할 수 있습니다.
 
@@ -49,8 +51,8 @@ ECS에서 말하는 컨테이너 또한 도커 컨테이너와 동일한 의미�
 
 ECS Fargate는 기존 EC2 인스턴스를 기반으로 컨테이너를 동작시키던 방식이 아닌 컨테이너에 더 적합한 서버리스 컴퓨팅 엔진입니다. Fargate 서비스는 ECS 및 EKS에서도 모두 작동합니다. Fargate에서는 서버를 프로비저닝하고 관리할 필요가 없고 적당량의 컴퓨팅을 할당하게 되므로 클러스터 용량을 조정할 필요가 없습니다. 컨테이너를 실행하는 데 필요한 리소스 비용만 지불하게 되므로 과도한 비용이 들어가지 않는다는 장점도 있습니다. Fargate는 자체 커널에서 각 태스크 또는 팟(in EKS)을 실행하며, 이러한 태스크와 팟은 격리된 자체 컴퓨팅 환경에서 제공되게 됩니다. 또한 Fargate를 사용하면 Amazon CloudWatch Container Insights를 비롯한 다른 AWS 서비스와의 내장된 통합 기능을 통해 가시성을 즉시 확보할 수 있습니다. Fargate에서는 개방형 인터페이스로 3rd-party 도구를 폭넓게 선택함으로써 애플리케이션을 모니터링하기 위한 지표와 로그 또한 수집이 가능합니다.
 
-![AWS Fargate](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-04.png)
-*출처: [https://aws.amazon.com/ko/fargate](https://aws.amazon.com/ko/fargate)*
+![AWS Fargate](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-04.png){:target="_blank"}
+*출처: [https://aws.amazon.com/ko/fargate](https://aws.amazon.com/ko/fargate){:target="_blank"}*
 
 간단히 말해 AWS Fargate를 사용하면 애플리케이션에만 온전히 집중할 수 있다는 장점이 있습니다. Fargate를 사용하는 유저는 애플리케이션 콘텐츠, 네트워킹, 스토리지에만 관심을 가지면 됩니다. 프로비저닝, 패치 적용, 클러스터 용량 관리 또는 인프라 관리가 필요 없게 됩니다. 반대로 규정 준수나 사용자 커스터마이징이 필요한 경우에는 Fargate를 사용하는 것보다 직접 EC2를 프로비저닝 하는 것이 더 적절할 수 있습니다.
 
@@ -58,7 +60,7 @@ ECS Fargate는 기존 EC2 인스턴스를 기반으로 컨테이너를 동작시
 
 컨테이너만으로 바로 서비스를 구축하는 것은 당연히 불가능할 것입니다. 태스크 데피니션(Task definition)은 이러한 컨테이너들을 태스크(Task)라는 컨테이너 실행의 최소 단위로 묶어 애플리케이션 동작에 필요한 여러가지 설정을 정의하게 됩니다. 하나의 태스크는 하나 이상의 컨테이너로 구성 되며, 일반적으로 하나의 필수 컨테이너만으로 구성이 됩니다. 또한 태스크는 밑에서 알아볼 Service 내에 존재하여 Service가 삭제되면 태스크 또한 삭제되지만, 태스크 데피니션은 클러스터와 독립적으로 존재하게 됩니다.
 
-![Task Definition](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-05.png)
+![Task Definition](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-05.png){:target="_blank"}
 
 태스크 데피니션은 태스크를 실행할 때 컨테이너의 네트워크 모드, 태스크의 역할(Task Role), 도커 이미지, 볼륨, 리소스 제한 등 다양한 설정을 정의할 수 있습니다. 이렇게 태스크 데피니션을 정의해 놓으면 컨테이너를 실행 시킬 때마다 매번 설정할 필요 없이 템플릿처럼 활용이 가능합니다. 태스크 데피니션으로 태스트를 정의해 놓으면 그렇게 실행된 태스크 내의 컨테이너가 필요에 따라 자동으로 스케일링 될 수도 있습니다. 또한 태스크 데피니션을 수정하면 설정이 변경된 태스크 데피니션은 추가로 리비전으로 저장됩니다.
 
@@ -68,29 +70,29 @@ ECS Fargate는 기존 EC2 인스턴스를 기반으로 컨테이너를 동작시
 
 그래서 위의 방법 대신 서비스를 정의하여 태스크를 생성하게 됩니다. **서비스는 하나의 태스크 데피니션과 연결**이 되는데, 레플리카(Replica) 타입과 데몬(Demon)타입이 존재합니다. 데몬 타입으로 실행하는 경우에는 모든 컨테이너 인스턴스에 ( Fargate라면 각각의 모든 Fargate에) 태스크가 하나씩 실행됩니다. 데몬 타입은 인스턴스들을 일괄적으로 관리하기 위한 용도로 사용이 됩니다. 레플리카(Replica) 타입은 실행할 태스크의 개수를 정해주어야 하는데, 이 때 서비스가 해당 개수만큼 태스크가 실행되도록 관리해 줍니다. 레플리카 타입은 웹서버나 실제 서비스에서 주로 사용합니다.
 
-![Service](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-06.png)
+![Service](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-06.png){:target="_blank"}
 
 서비스에서는 태스크의 개수를 정해주는 것 외에도 보안 그룹과 로드밸런서(Load Balancer) 도 설정할 수 있습니다. 로드 밸런서 리스터 포트를 설정하고 타켓이 될 컨테이너를 지정할 수 있습니다. 로드 밸런서를 사용하도록 구성된 서비스는 타겟 그룹이 포함된 태스크가 로드 밸런서에 등록되고, 외부에서 들어오는 트래픽은 로드 밸런서를 통해 각 태스크로 부하가 분산됩니다.
 
-![Service With LB](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-07.png)
+![Service With LB](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-07.png){:target="_blank"}
 
 ### 클러스터(Clusters)
 
 클러스터는 태스크 또는 서비스를 포함하는 하나의 논리적 그룹입니다. 다시 말해 컨테이너를 실행할 수 있는 가상의 최상위 공간이라고 할 수 있습니다. ECS 클러스터는 컴퓨팅 자원을 기본적으로 포함하지 않고 있기 때문에 빈 클러스터를 생성하는 것도 가능합니다. 위의 태스크와 서비스 또한 사실 한 단위의 클러스터에 등록되어 실행됩니다. 만약 태스크가 Fargate에서 실행된다면 클러스터의 리소스도 Fargate에서 관리됩니다.
 
-![Cluster](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-08.png)
+![Cluster](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-08.png){:target="_blank"}
 
 ### 태스크 스케줄링(Task scheduling)
 
 앞서 태스크는 태스크 데피니션을 통해 정의된다고 하였습니다. ECS 내에서 애플리케이션에 대한 태스크 데피니션을 생성한 후에 실행할 태스크의 수를 지정할 수 있습니다. 태스크 스케줄러는 클러 클러스터 내에 태스크를 배치하는 역할을 합니다. 이 때 여러가지 예약 옵션 등을 사용할 수 있습니다. ECS에는 이러한 관리를 담당하는 스케줄러가 있는데, 그게 바로 서비스입니다. ECS 서비스는 ecs-client에서 수집된 정보를 통해서 태스크 실행에 대한 옵션들을 결정합니다. 따라서 레플리카(Replica) 타입의 서비스의 경우, 서비스가 직접 태스크 배치 스케줄링을 수행합니다.
 
-![Task Scheduling](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-09.png)
+![Task Scheduling](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-09.png){:target="_blank"}
 
 ### ECR(Elastic Container Registry)
 
 Amazon ECR은 개발자가 Docker 컨테이너 이미지를 손쉽게 저장, 관리 및 배포할 수 있게 해주는 완전관리형 Docker 컨테이너 레지스트리입니다. ECR은 ECS와 통합되므로 개발에서 배포까지의 워크플로우를 간소화할 수 있습니다. ECR을 사용하면 자체 컨테이너 리포지토리를 운영하거나 기본 인프라를 확장할 필요가 없습니다. 또한 AWS IAM(Identity and Access Management)과 통합되어 각 리포지토리에 대한 리소스 수준의 제어를 제공합니다. ECR에는 선수금이나 약정이 없고 리포지토리에 저장된 데이터와 인터넷으로 전송한 데이터 양에 대한 요금만 지불됩니다.
 
-![ECR](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-10.png)
+![ECR](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-10.png){:target="_blank"}
 
 ECR은 Amazon S3를 스토리지로 사용하여 컨테이너 이미지에 대한 높은 가용성과 액세스를 제공하므로 애플리케이션을 위한 컨테이너를 안정적으로 배포할 수 있습니다. 컨테이너 이미지를 HTTPS를 통해 전송하고, 저장 이미지를 자동으로 암호화합니다. 개발 머신에서 Docker CLI를 사용하여 컨테이너 이미지를 ECR로 쉽게 Push하고, ECS에서 프로덕션 배포를 위해 해당 이미지를 직접 가져올 수 있습니다. 또한 AWS CloudTrail을 사용하여 누가 이미지를 가져왔는지 이미지 간의 태그가 언제 이동되었는지 등과 같은 모든 API작업을 기록할 수 있습니다. 현재 ECR에서는 Docker 엔진 1.7.0 이상을 지원하며 Docker 레지스트리 V2 API 사양을 지원하고 있습니다.
 
@@ -98,4 +100,4 @@ ECR은 Amazon S3를 스토리지로 사용하여 컨테이너 이미지에 대�
 
 앞에서 설명한 여러 구성 요소들을 한 눈에 볼 수 있도록 ECS 구성을 간단히 그려 보면 아래와 같을 것입니다. 뒤에서 진행할 Fargate 구축도 아래의 아키텍처를 바탕으로 진행할 예정입니다.
 
-![ECS Architecture](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-11.png)
+![ECS Architecture](/assets/image/posts/2020-12-28-ecs-fargate-benchmark-11.png){:target="_blank"}
