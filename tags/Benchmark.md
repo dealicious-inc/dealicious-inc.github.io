@@ -1,5 +1,5 @@
 ---
 layout: tag
-tag: Banchmark
+tag: Benchmark
 permalink: /tags/benchmark/
 ---
