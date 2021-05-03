@@ -12,3 +12,4 @@ kramdown:
 plugins:
   - jemoji
   - jekyll-paginate
+  - jekyll-seo-tag
