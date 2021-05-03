@@ -3,7 +3,7 @@ layout: page
 title: ECS Fagate 성능 측정하기 - 구축부터 Benchmark까지 (중)
 writer: 황문주
 description: "ECS Fargate를 직접 만들어봅시다."
-tags: [AWS, ECS, Fargate Benchmark]
+tags: [AWS, ECS, Fargate, Benchmark]
 thumbnail: 'posts/2020-12-28-ecs-fargate-benchmark-15.png'
 ---
 
