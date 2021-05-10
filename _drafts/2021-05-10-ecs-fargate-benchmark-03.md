@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ECS Fagate 성능 측정하기 - 구축부터 Benchmark까지 (하)
+title: ECS Fargate 성능 측정하기 - 구축부터 Benchmark까지 (하)
 writer: 황문주
 description: "ECS Fargate를 구성하고 성능을 측정해 봅시다."
 tags: [AWS, ECS, Fargate, Benchmark]
