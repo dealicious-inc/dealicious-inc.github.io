@@ -20,7 +20,7 @@ thumbnail: 'posts/2020-12-30-axios-integration-01.png'
 
 토큰에 expire 개념이 들어가 있다 보니 유저가 사용하다가 토큰 만료시간이 지나면 오류가 발생합니다. 그래서 새로운 토큰을 발급받을 수 있는 refresh-token를 만들고, 이 토큰을 이용하여 새로운 access-token을 받아 사용자가 서비스를 끊김 없이 이용할 수 있도록 구현했습니다.
 
-![](/assets/image/posts/2020-12-30-axios-integration-01.png)
+![](/assets/image/posts/2020-12-30-axios-integration-01.png)<br/>
 ### case: 사용자가 발급받은 acess-token이 있다.
 1. access-token이 정상인지 서버 측에서 검증 후 response를 준다.  
 2. access-token이 정상이 아니라면(변조, 다른 PC에서 로그인 등) response에 특정 코드를 내려준다.
@@ -40,12 +40,12 @@ refresh-token만 있고, 새로고침 했을 때의 상황입니다.<br/>
 *한 페이지에서 100개의 API를 쏜다면 100번 session API를 쏘는 소오름*
 
 마침 이러한 flow를 만든 것이 저였기에, 조금만 더 고민과 노력을 해달라고 하시면서 저를....<br/>
-![](/assets/image/posts/2020-12-30-axios-integration-02.jpeg)
+![](/assets/image/posts/2020-12-30-axios-integration-02.jpeg)<br/>
 *쪼였으니 일해야 합니다*
 
 # 해결해야지...
 기존에 최선이라고 생각했었던 로직에 대해 한 번 더 생각하는 시간을 가졌습니다. 한 페이지 안에서 각각의 독립적인 컴포넌트가 API를 호출하기 때문에 어떻게 해야 API 통신을 한 줄기로 만들 수 있을지 많은 고민을 했습니다. 그리고 파트원들과 고민을 나누면서 고통도 같이 나눴습니다.
-![](/assets/image/posts/2020-12-30-axios-integration-05.jpeg)
+![](/assets/image/posts/2020-12-30-axios-integration-05.jpeg)<br/>
 *나만 죽을 수 없다!*
 
 해결하기 위해서 여러 가지 방법을 생각했습니다.  
@@ -81,9 +81,9 @@ Vue.js의 navigation guard 코드 일부분입니다. 진입 당시 토큰 여�
 
 # 후기가 남아있습니다.
 예전부터 용화 님(CTO)이 밑밥을 많이 뿌린 회사 기술 블로그에 글을 쓰게 되었습니다. 딜리셔스 개발팀의 기술력을 널리 전파하고, 내부적으로는 파트 간 기술을 공유할 수 있다는 장점이 있지만, 저는 자칫 관리를 안 하게 되면 만든 것만도 못한다고 생각했기 때문에 위험성도 클 것 같았습니다. ~~잘 쪼아주시겠지~~
-![](/assets/image/posts/2020-12-30-axios-integration-08.jpg)
-![](/assets/image/posts/2020-12-30-axios-integration-09.jpg)
-![](/assets/image/posts/2020-12-30-axios-integration-10.jpeg)
+![](/assets/image/posts/2020-12-30-axios-integration-08.jpg)<br/>
+![](/assets/image/posts/2020-12-30-axios-integration-09.jpg)<br/>
+![](/assets/image/posts/2020-12-30-axios-integration-10.jpeg)<br/>
 *이번엔 여러 명이 쪼고 있습니다.*
 
 *또 쪼였으니 일해야 합니다.*
