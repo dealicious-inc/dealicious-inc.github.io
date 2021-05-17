@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Frontend
-permalink: /tags/Frontend/
+permalink: /tags/frontend/
 ---
