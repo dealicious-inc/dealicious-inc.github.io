@@ -3,7 +3,7 @@ layout: page
 title:  "Axios 통신 한줄기로 만들기"
 writer: 강전혁
 description: "로그인 프로세스 개선"
-tags: [Frontend, Java Script, Axios, Session]
+tags: [frontend, Java Script, Axios, Session]
 thumbnail: 'posts/2020-12-30-axios-integration-01.png'
 ---
 
