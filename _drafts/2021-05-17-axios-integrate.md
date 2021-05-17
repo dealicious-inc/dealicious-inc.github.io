@@ -2,6 +2,8 @@
 layout: page
 title:  "Axios 통신 한줄기로 만들기"
 writer: 강전혁
+description: "로그인 프로세스 개선"
+tags: [Frontend, Java Script, Axios, Session]
 thumbnail: 'posts/2020-12-30-axios-integration-01.png'
 ---
 
@@ -79,8 +81,8 @@ Vue.js의 navigation guard 코드 일부분입니다. 진입 당시 토큰 여�
 
 # 후기가 남아있습니다.
 예전부터 용화 님(CTO)이 밑밥을 많이 뿌린 회사 기술 블로그에 글을 쓰게 되었습니다. 딜리셔스 개발팀의 기술력을 널리 전파하고, 내부적으로는 파트 간 기술을 공유할 수 있다는 장점이 있지만, 저는 자칫 관리를 안 하게 되면 만든 것만도 못한다고 생각했기 때문에 위험성도 클 것 같았습니다. ~~잘 쪼아주시겠지~~
-![](/assets/image/posts/2020-12-30-axios-integration-08.png)
-![](/assets/image/posts/2020-12-30-axios-integration-09.png)
+![](/assets/image/posts/2020-12-30-axios-integration-08.jpg)
+![](/assets/image/posts/2020-12-30-axios-integration-09.jpg)
 ![](/assets/image/posts/2020-12-30-axios-integration-10.jpeg)
 *이번엔 여러 명이 쪼고 있습니다.*
 
