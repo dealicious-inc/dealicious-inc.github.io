@@ -3,7 +3,7 @@ layout: page
 title:  "Private npm registry 도입기"    
 writer: 이다빈    
 description: "lerna + vue + typescirpt 공통 모듈 패키지 배포하기"
-tags: [Github Packages, mono-repo, Lerna, architecture, Frontend]
+tags: [Github Packages, mono-repo, Lerna, architecture, frontend]
 thumbnail: '/posts/20210308dabin/2021-03-08-09.png'    
 ---
 
