@@ -1,5 +1,5 @@
 ---
 layout: tag
 tag: Java Script
-permalink: /tags/Javascript/
+permalink: /tags/Java Script/
 ---
