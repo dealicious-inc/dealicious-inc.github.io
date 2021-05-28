@@ -1,5 +1,5 @@
 body {
-  font-family: 'Nanum Gothic', serif;
+  font-family: 'Nanum Gothic', sans-serif, SansSerif;
   padding: 0;
   margin: 0;
   color: white;
@@ -157,7 +157,6 @@ main {
       font-family: GmarketSans;
       font-weight: 500;
       line-height: 1.38;
-      -webkit-text-stroke: 1px #222222;
       font-size: 34px;
       margin-bottom: 12px;
     }
@@ -426,7 +425,6 @@ main {
       &__title {
         margin-top: 14px;
         font-family: GmarketSans;
-        -webkit-text-stroke: 1px #222222;
         font-size: 26px;
         font-weight: 500;
         color: #222222;
