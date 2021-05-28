@@ -157,6 +157,7 @@ main {
       font-family: GmarketSans;
       font-weight: 500;
       line-height: 1.38;
+      letter-spacing: -0.5px;
       font-size: 34px;
       margin-bottom: 12px;
     }
@@ -425,6 +426,7 @@ main {
       &__title {
         margin-top: 14px;
         font-family: GmarketSans;
+        letter-spacing: -0.5px;
         font-size: 26px;
         font-weight: 500;
         color: #222222;
