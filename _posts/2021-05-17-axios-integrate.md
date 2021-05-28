@@ -4,7 +4,7 @@ title:  "Axios 통신 한줄기로 만들기"
 writer: 강전혁
 description: "로그인 프로세스 개선"
 tags: [frontend, Java Script, Axios, Session]
-thumbnail: 'posts/2020-12-30-axios-integration-01.png'
+thumbnail: 'posts/2020-12-30-axios-integration-02.jpeg'
 ---
 
 >안녕하세요. 웹 파트의 강전혁입니다.
