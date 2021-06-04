@@ -3,6 +3,7 @@ layout: page
 title: NARA(Non-Aggregation Real-time Analytics) 시스템 개발기
 writer: 이유진
 thumbnail: 'posts/2021-06-03-nara-system/time.png'
+tags: [Data Platform, realtime, Kinesis, Clickhouse]
 ---
 
 딜리셔스는 광고를 집행하는 도매에게 광고 사용 현황과 통계 결과를 확인 할 수 있는 '신상애드' 서비스를 제공하고 있습니다. 여기서는 광고 상품별로 노출, 클릭, 찜, 매장 방문과 같은 유저의 행동 데이터와 광고 집행 비용에 대한 결과 메트릭을 광고주에게 제공함으로써 광고 집행의 효과를 쉽게 확인 할 수 있습니다.
