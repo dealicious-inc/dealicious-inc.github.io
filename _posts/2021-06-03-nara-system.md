@@ -2,6 +2,7 @@
 layout: page
 title: NARA(Non-Aggregation Real-time Analytics) 시스템 개발기
 writer: 이유진
+description: "Clickhouse를 사용한 실시간 데이터 플랫폼 제작기"
 thumbnail: 'posts/2021-06-03-nara-system/time.png'
 tags: [Data Platform, realtime, Kinesis, Clickhouse]
 ---
