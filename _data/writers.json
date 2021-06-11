@@ -4,101 +4,107 @@
     "thumbnail": "/assets/image/default/logo-05-01.png",
     "comment": "딜리셔스 기본 작성자",
     "career": "딜리셔스 개발자"
-  },
-  "지준호" : {
+  }
+  , "지준호" : {
     "name": "지준호",
     "thumbnail": "/assets/image/writers/지준호.png",
     "comment": "백조 같은 삶 추구 (겉으로 보기에는 우아하지만, 물속에서는 XX 헤엄치고 있음)",
     "career": "신상마켓 API, Back Office 개발 및 운영"
-  },
-  "정수천" : {
+  }
+  , "정수천" : {
     "name": "정수천",
     "thumbnail": "/assets/image/writers/정수천.jpg",
     "comment": "사용자 친화적인 SW개발에 관심이 많은 개발자 입니다.",
     "career": "딜리셔스 안드로이드 개발"
-  },
-  "조웅" : {
+  }
+  , "조웅" : {
     "name": "조웅",
     "thumbnail": "/assets/image/writers/조웅.png",
     "comment": "귀차니즘은 기술 발달의 원동력",
     "career": "딜리셔스 데이터 엔지니어"
-  },
-  "황문주" : {
+  }
+  , "황문주" : {
     "name": "황문주",
     "thumbnail": "/assets/image/writers/황문주.png",
     "comment": "딜리셔스의 성공이 저의 성공입니다.",
     "career": "딜리셔스 DevOps"
-  },
-  "이대희" : {
+  }
+  , "이대희" : {
     "name": "이대희",
     "thumbnail": "/assets/image/writers/이대희.jpg",
     "comment": "고도화 된 기술과 테스트를 원함\n(자동화 돌리고 놀고 싶음)",
     "career": "딜리셔스 QA"
-  },
-  "강전혁" : {
+  }
+  , "강전혁" : {
     "name": "강전혁",
     "thumbnail": "/assets/image/writers/강전혁.png",
     "comment": "회사가 좋아서 회사 가까운곳으로 이사옴",
     "career": "신상마켓 웹 서비스 개발"
-  },
-  "서혜리" : {
+  }
+  , "서혜리" : {
     "name": "서혜리",
     "thumbnail": "/assets/image/writers/서혜리.jpeg",
     "comment": "육십까지 개발하고 싶은 주니어 백엔드 개발자입니다.",
     "career": "신상마켓 API, Back Office 개발 및 운영"
-  },
-  "유현지" : {
+  }
+  , "유현지" : {
     "name": "유현지",
     "thumbnail": "/assets/image/writers/유현지.jpeg",
     "comment": "야망있게 살고싶은 개발자 입니다.",
     "career": "신상마켓 iOS 개발자"
-  },
-  "이다빈": {
+  }
+  , "이다빈": {
     "name": "이다빈",
     "thumbnail": "/assets/image/writers/이다빈.jpg",
     "comment": "하늘을 우러러 한점 부끄럼 없는 코드를 쓰자",
     "career": "딜리셔스 프론트엔드 개발자"
-  },
-  "박경우" : {
+  }
+  , "박경우" : {
     "name": "박경우",
     "thumbnail": "/assets/image/writers/박경우.jpg",
     "comment": "맛있는 코드를 요리하다",
     "career": "딜리셔스 iOS 개발자"
-  },
-  "배병선" : {
+  }
+  , "배병선" : {
     "name": "배병선",
     "thumbnail": "/assets/image/writers/배병선.jpeg",
     "comment": "에러와 멀어지고 싶다면, 에러와 친해져라",
     "career": "딜리셔스 ML 엔지니어"
-  },
-  "정석" : {
+  }
+   , "정석" : {
     "name": "정석",
     "thumbnail": "/assets/image/writers/정석.jpg",
     "comment": "'미쳐야 미친다' - 개발에 미쳐보고자 노력하는 개발자",
     "career": "딜리셔스 백엔드 개발자"
-  },
-  "주인재" : {
+  }
+  , "주인재" : {
     "name": "주인재",
     "thumbnail": "/assets/image/writers/주인재.jpg",
     "comment": "거인을 향해",
     "career": "딜리셔스 백엔드 개발자"
-  },
-  "장중수" : {
+  }
+  , "장중수" : {
     "name": "장중수",
     "thumbnail": "/assets/image/writers/장중수.jpg",
     "comment": "No Pain, No Gain",
     "career": "딜리셔스 백엔드 개발자"
-  },
-  "최예나" : {
+  }
+  , "최예나" : {
     "name": "최예나",
     "thumbnail": "/assets/image/writers/최예나.jpg",
     "comment": "이 글을 읽는다면 허리를 펴고 자세를 바르게 해 주세요.\n건강한 신체에 건강한 코드가 깃듭니다.",
     "career": "딜리셔스 안드로이드 개발자"
-  },
-  "이유진" : {
+  }
+  , "이유진" : {
     "name": "이유진",
     "thumbnail": "/assets/image/writers/이유진.jpg",
     "comment": "ec9db4ec9ca0eca78420ecb29cec9eac",
+    "career": "딜리셔스 데이터 엔지니어"
+  }
+  , "이용화" : {
+    "name": "이용화",
+    "thumbnail": "/assets/image/writers/이용화.jpg",
+    "comment": "",
     "career": "딜리셔스 데이터 엔지니어"
   }
 }
