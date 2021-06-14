@@ -3,7 +3,7 @@ layout: page
 title: 딜리셔스 개발팀의 개발 문화 관찰 일지
 writer: 최예나
 description: "열 명 남짓 되던 개발팀이 쉰 명을 넘기며 만들어진 개발 문화에 대해 적어 보았습니다."
-tags: [culture]
+tags: [team, culture]
 thumbnail: 'posts/2021-05-24-developer-culture/blur1.png'
 ---
 ​
