@@ -37,7 +37,7 @@ thumbnail: 'posts/2021-04-12-state-machine/creative_state_diagram.png'
 * Transition : 녹색의 등화 -> 황색의 등화 -> 적색의 등화 ...
 ```
 
-즉, 신호등은 세 가지 State를 갖고 특정 시간 경과이라는 Event를 통해 다른 상태로 Transition 됩니다.
+즉, 신호등은 세 가지 State를 갖고 특정 시간 경과라는 Event를 통해 다른 상태로 Transition 됩니다.
 
 # 신상애드 광고 소재의 State Diagram
 

@@ -26,7 +26,7 @@ thumbnail: 'posts/2021-03-22-learning-transferable-visual-models/4.png'
 
 ![](/assets/image/posts/2021-04-05-distributed-locking/point.png)
 
-하지만 또 다른 문제에 직면했는데, 바로 기존 레거시 시스템에 경우 동시성 문제에 대해 고려가 되어있지 않았다는 점이었습니다. 여러 개의 트랜잭션이 연거푸 요청될 수 있어 포인트가 정상적으로 차감되지 않는 문제가 간헐적으로 발생하였습니다. 이러한 동시성 문제를 해결하기 위해 여러 가지 방법을 시도해 보았습니다.
+하지만 또 다른 문제에 직면했는데, 바로 기존 레거시 시스템의 경우 동시성 문제에 대해 고려가 되어있지 않았다는 점이었습니다. 여러 개의 트랜잭션이 연거푸 요청될 수 있어 포인트가 정상적으로 차감되지 않는 문제가 간헐적으로 발생하였습니다. 이러한 동시성 문제를 해결하기 위해 여러 가지 방법을 시도해 보았습니다.
 
 # 해결방법
 
@@ -40,7 +40,7 @@ thumbnail: 'posts/2021-03-22-learning-transferable-visual-models/4.png'
 ### MySQL Internal Locking
 
 다음으로 고려되었던건 MySQL Internal Locking 입니다.
-MySQL 내부 Lock은 멀티 세션에서 데이터에 동시성 처리를 위해 MySQL 서버에서 사용되는 Lock입니다.
+MySQL 내부 Lock은 멀티 세션에서 데이터의 동시성 처리를 위해 MySQL 서버에서 사용되는 Lock입니다.
 총 3가지의 Lock이 제공되고 있습니다.
 
 - Row-Level Locking
@@ -697,7 +697,7 @@ spec:
 </dependency>
 ```
 
-이 Dependecy를 등록하면 편하게 Redisson을 사용할 수 있습니다. yaml 파일로 Config을 작성만 해주면 해당 설정을 적용한 RedissonClient를 Spring Boot에서 알아서 생성해 줍니다.
+이 Dependency를 등록하면 편하게 Redisson을 사용할 수 있습니다. yaml 파일로 Config을 작성만 해주면 해당 설정을 적용한 RedissonClient를 Spring Boot에서 알아서 생성해 줍니다.
 
 ```java
 @Autowired
@@ -892,11 +892,11 @@ Lock 처리가 되지 않은 `/async/cash`로 테스트 계정의 캐시를 1만
 
 # 참고
 
-https://dev.mysql.com/doc/refman/5.7/en/internal-locking.html
+[https://dev.mysql.com/doc/refman/5.7/en/internal-locking.html](https://dev.mysql.com/doc/refman/5.7/en/internal-locking.htm)
 
-https://dev.mysql.com/doc/internals/en/user-level-locks.html
+[https://dev.mysql.com/doc/internals/en/user-level-locks.html](https://dev.mysql.com/doc/internals/en/user-level-locks.html)
 
-https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html
+[https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html](https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html)
 
 [https://github.com/redisson/redisson/wiki/1.-Overview](https://github.com/redisson/redisson/wiki/1.-Overview)
 

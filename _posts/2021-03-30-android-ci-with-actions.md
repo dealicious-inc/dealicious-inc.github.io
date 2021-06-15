@@ -246,7 +246,7 @@ jobs:
     - 위에서 정의한 Secret 키를 환경 변수로 등록합니다.
     - yml 빌드 스크립트에서의 접근은 `${{ secrets.KEY_ALIAS }}` 와 같이 사용합니다.
     - 등록된 환경 변수는 빌드가 돌아가는 가상머신의 환경 변수로 설정되며 `app/build.gradle`에서도 사용됩니다.
-- `S3_BUCKET_URL`, `S3_URL` , `S3_BROWSING` : 버킷 URL, S3 다운로드 링크에 사용될 URL, Brwosing(위에 [S3 JS Explorer](https://github.com/awslabs/aws-js-s3-explorer){:target="_blank"} 설치하면 사용 가능)에 사용될 URL 경로를 설정합니다.
+- `S3_BUCKET_URL`, `S3_URL` , `S3_BROWSING` : 버킷 URL, S3 다운로드 링크에 사용될 URL, Browsing(위에 [S3 JS Explorer](https://github.com/awslabs/aws-js-s3-explorer){:target="_blank"} 설치하면 사용 가능)에 사용될 URL 경로를 설정합니다.
 - `VERSION_NAME`, `VERSION_CODE`
     - 버전 정보를 입력합니다.
     - 버전 정보는 yml 빌드 스크립트에서 APK 파일명을 만들 때 이용됩니다.

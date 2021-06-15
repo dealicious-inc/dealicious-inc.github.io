@@ -3,7 +3,7 @@ layout: page
 title: 딜리셔스 개발팀 연대기
 writer: 이용화
 description: "지난 2년 동안 끊임없이 성장해 온 딜리셔스 개발팀의 모습을 정리해 보았습니다."
-thumbnail: 'posts/2021-06-14-dev-team-chronicle/dev-team-chronicle-01.jpg'
+thumbnail: 'posts/2021-06-14-dev-team-chronicle/dev-team-chronicle-04.jpg'
 tags: [Dealicious, team, culture]
 ---
 
@@ -13,7 +13,7 @@ tags: [Dealicious, team, culture]
 
 동대문을 중심으로 하는 패션 커머스를 플랫폼화 하기 위해 딜리셔스의 개발팀은 새로운 기능을 개발하고 기존의 구조를 고도화시키고 있으며, 이 과정에서 합류 당시 단지 17명이었던 개발팀은 전문적인 역할로 나누어진 60명 규모의 조직으로 성장했습니다. 이 포스트에서는 지금까지 딜리셔스 개발팀이 성장해 온 길을 간단히 소개하도록 하겠습니다.  
 
-![](/assets/image/posts/2021-06-14-dev-team-chronicle/dev-team-chronicle-01.jpg)
+![](/assets/image/posts/2021-06-14-dev-team-chronicle/dev-team-chronicle-04.jpg)
 
 # 레거시에서 관리 가능한 서비스로
 기존의 '신상마켓'은 2013년 정도부터 (개발자 출신) 대표님의 손길을 거친 레거시 PHP 어플리케이션으로 구성되어 있었습니다. 백엔드 API와 뷰가 같은 프로젝트에 들어가 있었고, 특별한 히스토리가 있어 복잡해진 비즈니스 로직이 다수 들어가 있는 매우 관리하기 어려운 플랫폼이었습니다. 로직 하나 수정하려면 PHP 코드를 꼼꼼히 다 뜯어봐야 했었고, 이 과정에서 예상치 못한 사이드이펙트로 문제가 발생한 적도 있습니다.
