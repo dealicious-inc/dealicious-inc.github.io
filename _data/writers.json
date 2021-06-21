@@ -107,4 +107,10 @@
     "comment": "기계식 키보드의 영롱한 소리가 사무실을 채울 때, 전설의 코드가 그 모습을 드러내리라",
     "career": "딜리셔스 CTO"
   }
+  , "김한비" : {
+    "name": "김한비",
+    "thumbnail": "/assets/image/writers/김한비.jpg",
+    "comment": "꾸준히 쌓아가기",
+    "career": "딜리셔스 백엔드 개발자"
+  }
 }
