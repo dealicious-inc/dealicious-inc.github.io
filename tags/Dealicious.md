@@ -1,5 +1,5 @@
 ---
 layout: tag
-tag: Data Platform
+tag: Dealicious
 permalink: /tags/dealicious/
 ---
