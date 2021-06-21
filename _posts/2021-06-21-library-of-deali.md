@@ -4,7 +4,7 @@ title:  "딜리의 서재 개발기"
 writer: 김한비	
 description: "2020 여름 인턴 프로젝트 경험 공유"
 tags: [인턴, Spring Boot, React, Dealicious]
-thumbnail: 'posts/2021-06-21-library-of-deali/01.png'
+thumbnail: 'posts/2021-06-21-library-of-deali/11.png'
 ---
 
 > 안녕하세요. 광고개발파트의 김한비입니다.  
