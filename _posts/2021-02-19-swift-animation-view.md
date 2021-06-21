@@ -3,7 +3,7 @@ layout: page
 title:  "Swift 금액 입력 애니메이션 뷰 개발 일지"    
 writer: 유현지
 description: "UIStackView의 능력을 최대한 이끌어내 보자"
-tags: [iOS, Swift, UIStackview, animation, CocoaPod]
+tags: [iOS, Swift, UIStackView, animation, CocoaPod]
 thumbnail: 'posts/2021-02-22-swift-animation-view-01.gif'    
 ---
 

@@ -1,5 +1,5 @@
 ---
 layout: tag
-tag: UIStackview
+tag: UIStackView
 permalink: /tags/uistackview/
 ---
