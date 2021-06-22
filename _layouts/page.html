@@ -2,7 +2,7 @@
 layout: default
 ---
 <div class="post">
-    <div>
+    <div class="post__contents">
         {{ content }}
     </div>
     {% for writer in page.writer %}
@@ -12,8 +12,8 @@ layout: default
         <div class="writer-info__bubble">
             <div class="writer-info__title">
                 <p>{{ writerData.name }}</p>
-                <div class="split-line"></div>
-                <p>{{ writerData.career }}</p>
+                <div class="tablet-hide split-line"></div>
+                <p class="writer-info__career">{{ writerData.career }}</p>
             </div>
             <p class="writer-info__comment">"{{ writerData.comment }}"</p>
         </div>
