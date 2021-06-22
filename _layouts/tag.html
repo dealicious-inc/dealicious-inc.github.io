@@ -26,7 +26,8 @@ layout: default
                             {{ post.description }}
                         </div>
                     </div>
-                    <img src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
+                    <img class="mobile-hide"
+                         src="/assets/image/{{ post.thumbnail | default: 'thumbnail/default.png' }}"/>
                 </a>
                 <div class="post-list-item__bottom">
                     {% for writer in post.writer %}
@@ -43,6 +44,8 @@ layout: default
             {% endfor %}
         </ol>
     </div>
-    {% include tags.html %}
+    <div class="tablet-hide">
+        {% include tags.html %}
+    </div>
 </div>
 {% include pagination.html %}

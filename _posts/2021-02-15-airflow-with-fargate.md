@@ -116,6 +116,8 @@ Fargate는 ECS 서비스 단위로 Security Group, IAM Role 적용이 가능하�
 
 EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, Fargate도 task definition 설정 시 vCPU와 Memory의 limit를 지정할 수 있고 vCPU, Memory 단위로 비용이 책정되어 있습니다. 설정 가능 리소스(vCPU, Memory) 단위는 EC2 intance type별 리소스 단위와 비슷합니다.
 
+<div class="table-wrapper" markdown="block">
+
 | CPU 값 | Memory 값 |
 |---|---|
 | 256(.25 vCPU) | 0.5GB, 1GB, 2GB |
@@ -123,6 +125,8 @@ EKS(K8s) pod 생성 시 yml에 CPU, Memory의 limit를 지정할 수 있듯이, 
 | 1024(1 vCPU) | 2GB, 3GB, 4GB, 5GB, 6GB, 7GB, 8GB |
 | 2048(2 vCPU) | 1GB 단위로 4GB ~ 16GB 사이 |
 | 4096(4 vCPU) | 8GB ~ 30GB(1GB 단위) |
+
+</div>
 
 Ref : [Task CPU and memory](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/AWS_Fargate.html){:target="_blank"}
 

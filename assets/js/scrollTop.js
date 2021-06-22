@@ -54,3 +54,16 @@ function copyLocation() {
     document.body.removeChild(input);
     alert("주소가 복사되었습니다.");
 }
+
+function openHamburger() {
+    const hamburger = document.querySelector('.navigation__hamburger');
+    hamburger.classList.add('navigation__hamburger--active')
+    hamburger.classList.remove('tablet-hide')
+    document.body.style.overflow = 'hidden';
+}
+function closeHamburger() {
+    const hamburger = document.querySelector('.navigation__hamburger');
+    hamburger.classList.remove('navigation__hamburger--active')
+    hamburger.classList.add('tablet-hide')
+    document.body.style.overflow = 'auto';
+}

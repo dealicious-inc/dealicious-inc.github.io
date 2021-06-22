@@ -16,19 +16,34 @@
 <nav class="navigation">
     <ul class="navigation__list">
         <li class="navigation__list-item">
-            <a href="/">
+            <a class="navigation__list-item--title" href="/">
                 <img class="logo-image" src="/assets/image/default/img-logo-dealiciou-86.svg" >
                 기술 블로그
             </a>
         </li>
-        <ul>
-            <li class="navigation__list-item--sub-menu">
-                <a href="https://www.dealicious.kr/" target="_blank">HOMEPAGE</a>
-            </li>
-            <li class="navigation__list-item--sub-menu">
-                <a href="https://www.notion.so/e8747fb16efe4f1ba7747e7f96f9d373" target="_blank">RECRUIT</a>
-            </li>
-        </ul>
+        <li class="navigation__list-item">
+            <div class="navigation__hamburger-icon tablet-only"
+                 onclick="openHamburger()">
+                <img class="icon"
+                     src="/assets/image/default/32-ic-menu-white-32@2x.png" >
+            </div>
+            <ul class="tablet-hide navigation__hamburger">
+                <li class="tablet-only navigation__list-item--close-button">
+                    <img class="icon"
+                         onclick="closeHamburger()"
+                         src="/assets/image/default/32-ic-cancel-gray-900-32.svg" >
+                </li>
+                <li class="navigation__list-item--sub-menu">
+                    <a href="https://www.dealicious.kr/" target="_blank">HOMEPAGE</a>
+                </li>
+                <li class="navigation__list-item--sub-menu">
+                    <a href="https://www.notion.so/e8747fb16efe4f1ba7747e7f96f9d373" target="_blank">RECRUIT</a>
+                </li>
+                <li class="tablet-only">
+                    {% include tags.html %}
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>
 {% include header.html %}

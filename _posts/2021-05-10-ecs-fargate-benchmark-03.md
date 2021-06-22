@@ -25,6 +25,8 @@ thumbnail: 'posts/2020-12-28-ecs-fargate-benchmark-36.png'
 
 #### Bandwidth test result
 
+<div class="table-wrapper" markdown="block">
+
 CPU value | Memory value | Bandwidth(Gbit/s) (ec2 -> Fargate) | Bandwidth(Gbit/s) (Fargate -> ec2) | Price(USD/hour)
 ---|---:|---:|---:|---:
 256(0.25vCPU) | 0.5GB | 2.38 | 4.70 | 0.014195
@@ -37,6 +39,8 @@ CPU value | Memory value | Bandwidth(Gbit/s) (ec2 -> Fargate) | Bandwidth(Gbit/s
 2048(2vCPU) | 16GB | 9.51 | 9.58 | 0.017488
 4096(4vCPU) | 8GB | 9.36 | 9.58 | 0.22712
 4096(4vCPU) | 30GB | 9.51 | 9.58 | 0.33954
+
+</div>
 
 위의 결과 표를 차트로 나타내 보았습니다.
 
@@ -58,6 +62,8 @@ CPU value | Memory value | Bandwidth(Gbit/s) (ec2 -> Fargate) | Bandwidth(Gbit/s
 
 #### 읽기 성능
 
+<div class="table-wrapper" markdown="block">
+
 CPU value | Memory value | MiB transferred(MiB/sec) | Execution Time (sec)
 ---|---:|---:|---: 
 256(0.25vCPU) | 0.5GB | 10240.00(5471.94) | 1.8657
@@ -71,7 +77,11 @@ CPU value | Memory value | MiB transferred(MiB/sec) | Execution Time (sec)
 4096(4vCPU) | 8GB | 10240.00(17112.24) | 0.5766
 4096(4vCPU) | 30GB | 10240.00(17344.97) | 0.5690
 
+</div>
+
 #### 쓰기 성능
+
+<div class="table-wrapper" markdown="block">
 
 CPU value | Memory value | MiB transferred(MiB/sec) | Execution Time (sec)
 ---|---:|---:|---: 
@@ -85,6 +95,8 @@ CPU value | Memory value | MiB transferred(MiB/sec) | Execution Time (sec)
 2048(2vCPU) | 16GB | 10240.00(12959.62) | 0.7680
 4096(4vCPU) | 8GB | 10240.00(13011.95) | 0.7649
 4096(4vCPU) | 30GB | 10240.00(12935.61) | 0.7693
+
+</div>
 
 위 표의 결과를 차트로 나타내보면 아래와 같습니다.
 
