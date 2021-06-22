@@ -2,7 +2,7 @@ $width-tablet: 880px;
 $width-mobile: 375px;
 
 body {
-  font-family: 'Nanum Gothic', sans-serif, SansSerif;
+  font-family: 'Nanum Gothic', sans-serif;
   padding: 0;
   margin: 0;
   color: white;
@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 64px 0;
-    font-family: NotoSans;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 19px;
     font-weight: normal;
     font-stretch: normal;
@@ -45,7 +45,7 @@ body {
 
   h1, h2 {
     margin: 64px 30px 16px 0;
-    font-family: NotoSansCJKkr;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: #222222;
@@ -71,7 +71,7 @@ body {
   }
   p, li {
     margin: 16px 0 24px;
-    font-family: NotoSansCJKkr;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
@@ -93,7 +93,7 @@ body {
       &+em {
         display: flex;
         justify-content: center;
-        font-family: NotoSansCJKkr;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
         font-style: normal;
         color: #888888;
@@ -173,7 +173,7 @@ main {
     }
     &--description {
       margin-bottom: 24px;
-      font-family: NotoSansCJKkr;
+      font-family: 'Noto Sans KR', sans-serif;
       line-height: 1.71;
       color: #666666;
       margin-top: 0;
@@ -182,7 +182,7 @@ main {
     &--writer {
       display: flex;
       align-items: center;
-      font-family: NotoSans;
+      font-family: 'Noto Sans KR', sans-serif;
       margin-top: 0;
       font-size: 14px;
     }
@@ -194,7 +194,7 @@ main {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    font-family: NotoSansCJKkr;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     text-align: center;
     color: #ffffff;
@@ -242,7 +242,7 @@ main {
   @extend .flex-center-center;
   padding-bottom: 41px;
   text-align: center;
-  font-family: NotoSans;
+  font-family: 'Noto Sans KR', sans-serif;
   margin-top: 80px;
   font-size: 14px;
   color: #888888;
@@ -384,7 +384,7 @@ main {
         >a {
           height: 48px;
           padding: 0;
-          font-family: NotoSans, sans-serif;
+          font-family: 'Noto Sans KR', sans-serif, sans-serif;
           font-size: 24px;
           font-weight: bold;
           color: #222222;
@@ -523,7 +523,7 @@ main {
       }
       &__tag-item {
         margin-right: 24px;
-        font-family: NotoSansCJKkr;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
         font-weight: bold;
         color: #104f68;
@@ -549,7 +549,7 @@ main {
       }
       &__description {
         margin-bottom: 15px;
-        font-family: NotoSansCJKkr;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
         line-height: 1.71;
         color: #666666;
@@ -557,7 +557,7 @@ main {
       &__bottom {
         display: flex;
         align-items: center;
-        font-family: NotoSansCJKkr;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
         color: #888888;
         pointer-events: none !important;
@@ -641,7 +641,7 @@ main {
     }
   }
   &__title {
-    font-family: NotoSans;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     font-weight: bold;
     color: #222222;
@@ -662,7 +662,7 @@ main {
     align-items: center;
     border-radius: 16px;
     background-color: #f6f6f6;
-    font-family: NotoSans;
+    font-family: 'Noto Sans KR', sans-serif;
     margin-right: 8px;
     margin-bottom: 8px;
     &:hover {
