@@ -1,9 +1,9 @@
 ---	
 layout: page	
 title:  "시작은 미약했으나 그 끝은 곧 창대해질(?) 딜리셔스 기술블로그 운영기"	
-writer: 전수영, 김선진, 김민지
-description: ""
-tags: []
+writer: ['전수영', '김민지',  '김선진']
+description: "딜리셔스 기술블로그의 위대한 탄생기"
+tags: ['Dealicious', 'culture', 'team']
 thumbnail: 'posts/2021-06-28-tboc-experience/03.jpeg'
 ---
 
