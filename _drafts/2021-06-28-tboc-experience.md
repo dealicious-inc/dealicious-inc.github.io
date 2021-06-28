@@ -34,3 +34,18 @@ thumbnail: 'posts/2021-06-28-tboc-experience/03.jpeg'
 ![](/assets/image/posts/2021-06-28-tboc-experience/03.jpeg)<br/>
 *차 한 잔에 추억과, 차 한잔에 코딩과, 차 한 잔에 원고 독촉과... TBOC 원로 멤버들의 티타임*
 <br/>
+
+<!-- 선진님 글 -->
+
+
+
+
+
+
+
+<!-- 민지님 글 -->
+
+
+
+
+
