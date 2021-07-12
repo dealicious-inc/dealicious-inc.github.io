@@ -7,7 +7,7 @@ thumbnail: 'posts/2021-07-12-sinsang-ad-genesis/3.png'
 tags: [ad]
 ---
 
-![신상마켓 광고 플랫폼 신상애드 BI](/assets/image/posts/2021-07-12-sinsang-ad-genesis/logo.png)
+![](/assets/image/posts/2021-07-12-sinsang-ad-genesis/logo.png)
 
 # 들어가며
 
@@ -42,7 +42,7 @@ tags: [ad]
 
 이 과정에서 우리는 도메인 주도 설계(Domain Driven Design)의 이벤트 스토밍 방법을 참고하여 우리만의 방식을 찾고자 노력했습니다.
 
-![피를 토하는 수 많은 미팅의 결과물...](/assets/image/posts/2021-07-12-sinsang-ad-genesis/1.png)
+![](/assets/image/posts/2021-07-12-sinsang-ad-genesis/1.png)
 
 
 약 3주 가량 이 과정을 거치며 팀원들에게 두 가지 변화가 생겼습니다. 첫 번째는 소통하는 과정에서 통일된 용어를 사용하기 시작했고, 두 번째는 우리가 무엇을 만들려고 하는지에 대한 목표를 같은 시각으로 바라볼 수 있게 되었습니다. 또한 이로 인해 위에서 언급했던 개인 간의 도메인 지식 차이를 어느 정도 해결할 수 있는 계기가 되었습니다.
