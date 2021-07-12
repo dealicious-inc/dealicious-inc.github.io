@@ -4,7 +4,7 @@ title: 신상애드 탄생기
 writer: 이진우
 description: "신상마켓 광고 플랫폼 개발 문화 이야기"
 thumbnail: 'posts/2021-07-12-sinsang-ad-genesis/3.png'
-tags: [ad]
+tags: [ad platform, sprint, experience]
 ---
 
 ![](/assets/image/posts/2021-07-12-sinsang-ad-genesis/logo.png)
