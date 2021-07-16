@@ -64,7 +64,7 @@ tags: []
 ## 색이 나오긴 했는데…
 그렇게 해서 파이널 컬러가 탄생했습니다. 촤란~
 
-![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/07.png)
+![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/10.png)
 
 분명히 이전보다는 시인성이 좋아지고 불필요한 컬러가 정리 되었습니다.   
 
@@ -78,15 +78,15 @@ tags: []
 
 	흔히들 사용하고 있는 방법인데요, 컬러가 강해지는 만큼 디자인에서처럼 정말 중요한 구성요소에만 적용해서 사용자의 인지를 쉽게 도와주는 것입니다. 특히 신상마켓은 옷이 잘 보여야 하는 서비스이기 때문에, 새롭게 적용된 색상이 너무 시선을 끌어 쇼핑을 방해하면 안됩니다.
 
-![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/08.png)
-
 ![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/09.png)
+
+![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/07.png)
 
 2. **노출 빈도 대비 면적 등 여러가지 상황고려를 잘 해야 한다.**
 
 	생각 못한 예외적인 케이스로 인해 포인트 컬러가 화면 대부분을 차지하는 경우가 발생하기 때문에, 이러한 상황이 발생하지 않도록 언제나 꼼꼼히 살펴봐야 합니다. 브랜딩을 위한 노력이 역효과를 불러 일으킬 수 있습니다.
 
-![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/10.png)
+![Technical Architecture](/assets/image/posts/2021-07-19-sinsangmarket-rebranding/08.png)
 
 
 ## 마무리 하며…
